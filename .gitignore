@@ -18,6 +18,7 @@ docker-compose.override.yml
 
 # Logs
 logs/
+diagnostics/
 *.log
 last_report.txt
 
@@ -31,9 +32,6 @@ Biolog_prompt.md
 CLAUDE.md
 .claude/
 plans/
-AGENTS.md
-biolog_streamlit/README.before-localhost-default-20260722.md
-biolog_streamlit/biologver1.2.0起動.md
 
 # Internal development artifacts
 biolog_streamlit/backup/

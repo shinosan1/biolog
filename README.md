@@ -121,7 +121,7 @@ docker compose up -d --build
 ヘルスチェック：
 ```bash
 curl http://localhost:8766/api/health/health
-# {"status":"ok","db":"/data/biolog.db"}
+# {"status":"ok","worker_alive":true,"database_ok":true,"queue":{"size":0,"max_size":100}}
 ```
 
 ### 5. 停止

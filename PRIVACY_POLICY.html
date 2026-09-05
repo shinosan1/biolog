@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="color-scheme" content="light dark"><title>BioLog プライバシーポリシー | BioLog</title><style>
+:root{color-scheme:light dark;--bg:#f5f8fb;--surface:#fff;--text:#1b2734;--muted:#5b6978;--line:#d6e0e8;--accent:#087990;--code:#edf3f6}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.75}a{color:var(--accent);text-underline-offset:.16em}a:focus-visible{outline:3px solid #f3b622;outline-offset:3px}.site-header{background:#12465a;color:#fff;padding:1.2rem max(1.2rem,calc((100% - 1160px)/2))}.site-header a{color:#fff;text-decoration:none}.site-header strong{font-size:1.1rem}nav{display:flex;flex-wrap:wrap;gap:.35rem .85rem;margin-top:.75rem}nav a{font-size:.9rem;opacity:.95}nav a[aria-current="page"]{font-weight:700;text-decoration:underline}main{max-width:1160px;margin:2rem auto;padding:clamp(1.2rem,3vw,3rem);background:var(--surface);box-shadow:0 2px 14px #14213d14}h1,h2,h3,h4,h5,h6{line-height:1.32;scroll-margin-top:1rem;color:var(--text)}h1{font-size:clamp(1.8rem,4vw,2.65rem);margin-top:0;border-bottom:3px solid var(--accent);padding-bottom:.35rem}h2{margin-top:2.5rem;border-bottom:1px solid var(--line);padding-bottom:.25rem}h3{margin-top:2rem}p,li{overflow-wrap:anywhere}ul,ol{padding-left:1.55rem}li+li{margin-top:.3rem}blockquote{margin:1.25rem 0;padding:.7rem 1rem;border-left:4px solid var(--accent);background:#eaf7f8}pre{overflow:auto;padding:1rem;background:var(--code);border:1px solid var(--line);border-radius:.35rem}code{font-family:ui-monospace,"Cascadia Code",Consolas,monospace;font-size:.92em;background:var(--code);padding:.08em .25em;border-radius:.2rem}pre code{padding:0;background:transparent}table{width:100%;border-collapse:collapse;margin:1.2rem 0;display:block;overflow-x:auto}th,td{border:1px solid var(--line);padding:.55rem .7rem;text-align:left;vertical-align:top}th{background:var(--code)}figure{margin:1.4rem auto;max-width:100%}figure img{display:block;max-width:100%;height:auto;margin:auto;border:1px solid var(--line);border-radius:.35rem}figcaption{text-align:center;color:var(--muted);font-size:.9rem;margin-top:.4rem}hr{border:0;border-top:1px solid var(--line);margin:2rem 0}.doc-footer{max-width:1160px;margin:0 auto 2rem;padding:0 1.2rem;color:var(--muted);font-size:.9rem}@media print{body{background:#fff}.site-header{background:#fff;color:#000;padding:0}.site-header a{color:#000}nav{display:none}main{box-shadow:none;margin:0;max-width:none;padding:0}.doc-footer{display:none}a{color:#000;text-decoration:none}}
+</style></head>
+<body><header class="site-header"><strong><a href="README.html">BioLog Documentation</a></strong><nav aria-label="Documentation navigation"><a href="README.html">README</a><a href="docs/slides.html">Slides</a><a href="biolog_streamlit/操作説明書.html">操作説明書</a><a href="docs/CODE_REFERENCE.html">コード解説</a><a href="TERMS_OF_USE.html">利用規約</a><a href="PRIVACY_POLICY.html" aria-current="page">プライバシー</a><a href="DISCLAIMER.html">免責事項</a><a href="LICENSE.html">ライセンス</a><a href="THIRD_PARTY_LICENSES.html">第三者ライセンス</a><a href="SHA256.html">SHA-256</a></nav></header><main>
+<h1 id="biolog-プライバシーポリシー">BioLog プライバシーポリシー</h1>
+<p>文書バージョン: 2026-07-22-1 / 最終更新日: 2026年7月22日</p>
+<h2 id="基本方針">基本方針</h2>
+<p>BioLog は、Docker 上で自己ホストして使う個人・家族向けの健康記録ツールです。本ソフトウェア自体に、入力された健康記録を開発者（<a href="https://github.com/shinosan1">shinosan1</a>）や第三者へ送信する機能はありません。</p>
+<p>健康記録は、本ソフトウェアを導入・運用する方（以下「運用者」）が自ら用意した環境（Docker コンテナ内の SQLite ファイル）にのみ保存されます。開発者は、運用者が入力した健康記録を本ソフトウェアの機能を通じて受領することはありません。</p>
+<p>本ソフトウェアには、ログイン認証、広告、アクセス解析、行動解析の機能はありません。</p>
+<h2 id="保存される情報と保存先">保存される情報と保存先</h2>
+<ul><li><strong>SQLite データベース</strong>（デフォルト <code>./data/biolog.db</code>）: 体温・脈拍・血圧（収縮期／拡張期）・体重・体脂肪率・筋肉量・基礎代謝・食事ログ・行動ログ・メモなど、運用者が入力した健康記録</li><li>記録は <code>user_id</code>（self / father / mother の3種固定）ごとに保存されます。自分以外の家族の記録を入力する場合は「家族データの取扱い」を参照してください。</li><li>保存場所は、運用者が <code>.env</code> の <code>BIOLOG_DATA_DIR</code> で指定したディレクトリ、または既定の <code>./data</code> です。</li></ul>
+<h2 id="外部送信について">外部送信について</h2>
+<p>本ソフトウェアには、入力された健康記録を開発者や第三者へ自動送信する機能はありません。標準ComposeではStreamlit（8501）とFastAPI（8766）を<code>127.0.0.1</code>だけに公開し、StreamlitからFastAPIへはDocker内部ネットワークで接続します。LLM Local ChatからFastAPIへ連携する場合も、標準の接続先は同一PCの<code>localhost:8766</code>です。</p>
+<p>ただし、以下は本ソフトウェアの動作とは別に発生し得ます。</p>
+<ul><li>本ソフトウェアのソースコードは GitHub 上のパブリックリポジトリで公開されています。GitHub は、リポジトリへのアクセス時に IP アドレス等の技術情報を記録することがあります。これは GitHub 社のサービス提供に伴う処理であり、開発者が受け取るものではありません。</li><li>運用者が自らの判断でクラウド VM 等インターネットに公開した場合、その通信・アクセスログは運用者が用意した環境・ネットワーク上で発生するものであり、開発者は関与・収集しません。</li></ul>
+<h2 id="認証なし設計に関する重要な注意">認証なし設計に関する重要な注意</h2>
+<p>README 記載の通り、本ソフトウェアは認証（API キー / Basic 認証 / OAuth）、HTTPS 前提、レート制限を実装していません。ブラウザのクロスオリジンAPI利用は許可していません。標準Composeはlocalhost限定ですが、バインド先をLANやインターネットから到達可能なアドレスへ変更すると、第三者が家族の健康記録へアクセスできる状態になり得ます。公開範囲とネットワークの安全管理は、運用者の責任で行ってください。</p>
+<h2 id="家族データの取扱い重要">家族データの取扱い（重要）</h2>
+<p>本ソフトウェアは、運用者が自分自身だけでなく、父・母など家族の健康記録もまとめて記録・閲覧できるよう設計されています。</p>
+<p>運用者が自分以外の家族（father / mother 等）の健康情報を入力・保存する場合、運用者は記録対象となる本人から個別に同意を得たうえで入力してください。本人の同意なく第三者の健康情報を入力・保存する行為は、その人のプライバシーを侵害するおそれがあります。</p>
+<p>入力するデータの範囲、保存期間、閲覧できる家族の範囲については、記録対象となる本人と事前に取り決めることを推奨します。</p>
+<p>アプリはDockerログの保存期間を設定しません。運用者はDockerのlogging driverとローテーション設定を確認してください。</p>
+<h2 id="データの削除">データの削除</h2>
+<p>健康記録は SQLite ファイル（既定 <code>./data/biolog.db</code>）に保存されています。個別の記録は各画面の編集・削除機能で削除できます。</p>
+<p>すべてのデータを削除する場合は、<code>docker compose down</code> で停止した後、<code>data</code> ディレクトリ配下の <code>biolog.db</code>（<code>-wal</code> / <code>-shm</code> が残っている場合はそれらも）を削除してください。バックアップを取得していた場合、そのファイルは別途、保存先で削除する必要があります。</p>
+<h2 id="エクスポートcsvファイルについて">エクスポート（CSV）ファイルについて</h2>
+<p>本ソフトウェアには CSV エクスポート機能があります。書き出した CSV ファイルの保存場所・共有・削除は運用者が管理してください。健康情報を含む CSV ファイルを、GitHub など公開の場所へアップロードしないでください。</p>
+<h2 id="健康・医療に関する注意">健康・医療に関する注意</h2>
+<p>BioLog は日々の記録を補助するためのツールです。医学的効果、治療効果、診断効果を保証または主張するものではありません。体調不良、異常値、健康上の不安がある場合は、医師などの専門家に相談してください。</p>
+<h2 id="問い合わせ">問い合わせ</h2>
+<p>本ソフトウェアは OSS として無保証で提供されています。不具合報告やご質問は、GitHub リポジトリの Issues で受け付けています。</p>
+<p>https://github.com/shinosan1/biolog/issues</p>
+<p>お問い合わせには、病名、服薬内容、体重、検査値その他の詳細な健康情報を記載しないでください。</p>
+<h2 id="ポリシーの変更">ポリシーの変更</h2>
+<p>本ポリシーの内容を変更する場合は、このページのバージョンと最終更新日を更新します。</p>
+<p>Copyright © 2026 shinosan1</p>
+</main><footer class="doc-footer">このHTMLは対応するMarkdown原本（<a href="PRIVACY_POLICY.md">PRIVACY_POLICY.md</a>）を閲覧しやすく表示するための文書です。</footer></body></html>

@@ -31,7 +31,7 @@ class ApiClientError(Exception):
 
 
 def _detail_from_http_error(e: requests.HTTPError) -> str:
-    if not e.response:
+    if e.response is None:
         return str(e)
     try:
         return e.response.json().get("detail", str(e))
@@ -47,7 +47,7 @@ def api_get(path: str, params: dict = None, suppress_404: bool = False):
         r.raise_for_status()
         return r.json()
     except requests.HTTPError as e:
-        raise ApiClientError(_detail_from_http_error(e), e.response.status_code if e.response else None)
+        raise ApiClientError(_detail_from_http_error(e), e.response.status_code if e.response is not None else None)
 
 
 def api_post(path: str, body: dict):
@@ -56,7 +56,7 @@ def api_post(path: str, body: dict):
         r.raise_for_status()
         return r.json()
     except requests.HTTPError as e:
-        raise ApiClientError(_detail_from_http_error(e), e.response.status_code if e.response else None)
+        raise ApiClientError(_detail_from_http_error(e), e.response.status_code if e.response is not None else None)
     except Exception as e:
         raise ApiClientError(str(e))
 
@@ -67,7 +67,7 @@ def api_put(path: str, body: dict):
         r.raise_for_status()
         return r.json()
     except requests.HTTPError as e:
-        raise ApiClientError(_detail_from_http_error(e), e.response.status_code if e.response else None)
+        raise ApiClientError(_detail_from_http_error(e), e.response.status_code if e.response is not None else None)
     except Exception as e:
         raise ApiClientError(str(e))
 
@@ -78,6 +78,6 @@ def api_delete(path: str):
         r.raise_for_status()
         return r.json()
     except requests.HTTPError as e:
-        raise ApiClientError(_detail_from_http_error(e), e.response.status_code if e.response else None)
+        raise ApiClientError(_detail_from_http_error(e), e.response.status_code if e.response is not None else None)
     except Exception as e:
         raise ApiClientError(str(e))

@@ -19,6 +19,16 @@ inject_number_input_styles()
 st.title("BioLog — 家族健康記録")
 
 
+def render_health_status(response: dict) -> None:
+    status = response.get("status")
+    if status == "ok":
+        st.success("OK")
+    elif status == "degraded":
+        st.warning("注意 — API は劣化状態です")
+    else:
+        st.error("異常 — API は利用できない状態です")
+
+
 # ── サイドバー ──────────────────────────────────────────
 with st.sidebar:
     st.header("フィルター")
@@ -47,7 +57,7 @@ with st.sidebar:
             st.error(f"API エラー: {e.message}")
             r = None
         if r:
-            st.success(f"OK — {r.get('db','')}")
+            render_health_status(r)
 
 
 # ── サマリーカード ──────────────────────────────────────

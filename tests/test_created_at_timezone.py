@@ -52,6 +52,18 @@ def test_missing_record_id_treats_naive_value_as_current_jst_format(streamlit_mo
     assert streamlit_modules[0].to_jst("2026-08-01 12:48:52") == "2026-08-01 12:48"
 
 
+def test_fresh_database_metadata_does_not_shift_early_ids(streamlit_modules):
+    assert streamlit_modules[0].to_jst(
+        "2026-08-01 12:48:52", record_id=1, legacy_utc_max_record_id=0
+    ) == "2026-08-01 12:48"
+
+
+def test_csv_bytes_have_bom_and_keep_japanese_content(streamlit_modules):
+    csv = streamlit_modules[1]._csv_bytes(pd.DataFrame([{"メモ": "朝食"}]))
+    assert csv.startswith(b"\xef\xbb\xbf")
+    assert "朝食" in csv.decode("utf-8-sig")
+
+
 def test_list_display_applies_boundary_to_created_at(streamlit_modules):
     view = streamlit_modules[1]
     displayed = view._prepare_display(pd.DataFrame([

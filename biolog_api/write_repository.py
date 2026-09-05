@@ -2,6 +2,11 @@ import json
 import sqlite3
 
 from db_manager import get_connection
+from log_utils import mask_pii
+
+
+MEAL_DETAIL_MAX_LENGTH = 10000
+ACTIVITY_LOG_MAX_LENGTH = 20000
 
 
 def _merge_log_entries(existing, incoming):
@@ -29,6 +34,13 @@ def _merge_log_entries(existing, incoming):
 def insert_record(payload: dict) -> dict:
     with get_connection(write=True) as conn:
         try:
+            history = conn.execute(
+                "SELECT record_id FROM request_history WHERE request_id = ?",
+                (payload["request_id"],),
+            ).fetchone()
+            if history is not None:
+                return {"idempotent": True, "id": history["record_id"]}
+
             existing = conn.execute(
                 """
                 SELECT meal_detail, activity_log
@@ -46,6 +58,8 @@ def insert_record(payload: dict) -> dict:
                 activity_log = _merge_log_entries(
                     existing["activity_log"], activity_log
                 )
+
+            _validate_log_lengths(meal_detail, activity_log)
 
             cur = conn.execute(
                 """
@@ -95,12 +109,26 @@ def insert_record(payload: dict) -> dict:
                 """,
                 (payload["user_id"], payload["date"]),
             ).fetchone()
-            return {"id": row["id"] if row is not None else cur.lastrowid}
+            record_id = row["id"] if row is not None else cur.lastrowid
+            try:
+                conn.execute(
+                    "INSERT INTO request_history (request_id, record_id) VALUES (?, ?)",
+                    (payload["request_id"], record_id),
+                )
+            except sqlite3.IntegrityError:
+                history = conn.execute(
+                    "SELECT record_id FROM request_history WHERE request_id = ?",
+                    (payload["request_id"],),
+                ).fetchone()
+                if history is not None:
+                    return {"idempotent": True, "id": history["record_id"]}
+                raise
+            return {"id": record_id}
         except sqlite3.IntegrityError as e:
             if "request_id" in str(e).lower():
                 # DB責任: UNIQUE(request_id) 衝突 → SELECT で既存 id を返す（冪等）
                 row = conn.execute(
-                    "SELECT id FROM health_records WHERE request_id = ?",
+                    "SELECT record_id FROM request_history WHERE request_id = ?",
                     (payload["request_id"],),
                 ).fetchone()
                 return {"idempotent": True, "id": row[0] if row else None}
@@ -136,13 +164,25 @@ def update_record(payload: dict) -> dict:
                     raise ValueError(f"Invalid type for {k}: {v}")
         if not fields:
             raise ValueError("No fields to update")
+        existing = conn.execute(
+            "SELECT meal_detail, activity_log FROM health_records WHERE id = ?",
+            (record_id,),
+        ).fetchone()
+        if existing is None:
+            raise ValueError(f"Record {record_id} not found")
+        for field, maximum in (
+            ("meal_detail", MEAL_DETAIL_MAX_LENGTH),
+            ("activity_log", ACTIVITY_LOG_MAX_LENGTH),
+        ):
+            if field in fields and fields[field] != existing[field] and len(fields[field]) > maximum:
+                raise ValueError(f"{field} must be at most {maximum} characters")
         set_clause = ", ".join(f"{k} = ?" for k in fields)
         values = list(fields.values()) + [record_id]
-        print(json.dumps({
+        print(mask_pii(json.dumps({
             "event": "UPDATE_SQL_EXECUTED",
             "record_id": record_id,
             "fields": list(fields.keys()),
-        }, ensure_ascii=False), flush=True)
+        }, ensure_ascii=False)), flush=True)
         cur = conn.execute(
             f"UPDATE health_records SET {set_clause} WHERE id = ?", values
         )
@@ -154,9 +194,19 @@ def update_record(payload: dict) -> dict:
 def delete_record(payload: dict) -> dict:
     with get_connection(write=True) as conn:
         record_id = payload["id"]
+        conn.execute("DELETE FROM request_history WHERE record_id = ?", (record_id,))
         cur = conn.execute(
             "DELETE FROM health_records WHERE id = ?", (record_id,)
         )
         if cur.rowcount == 0:
             raise ValueError(f"Record {record_id} not found")
         return {"id": record_id, "deleted": cur.rowcount}
+
+
+def _validate_log_lengths(meal_detail, activity_log):
+    for value, maximum, field in (
+        (meal_detail, MEAL_DETAIL_MAX_LENGTH, "meal_detail"),
+        (activity_log, ACTIVITY_LOG_MAX_LENGTH, "activity_log"),
+    ):
+        if isinstance(value, str) and len(value) > maximum:
+            raise ValueError(f"{field} must be at most {maximum} characters")

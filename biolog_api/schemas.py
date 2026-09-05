@@ -139,8 +139,10 @@ class HealthRecordUpdate(BaseModel):
     muscle_mass: Optional[float] = None
     bmr: Optional[int] = None
     memo:         Optional[str] = Field(default=None, max_length=10000)
-    meal_detail:  Optional[str] = Field(default=None, max_length=10000)
-    activity_log: Optional[str] = Field(default=None, max_length=20000)
+    # Existing records created before the aggregate-length check may exceed
+    # these limits. Repository validation allows an unchanged value through.
+    meal_detail:  Optional[str] = Field(default=None)
+    activity_log: Optional[str] = Field(default=None)
 
     @field_validator("temperature")
     @classmethod

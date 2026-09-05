@@ -96,6 +96,8 @@ api_calls = st.session_state["api_calls"]
 
 def fake_get(path, params=None, suppress_404=False):
     api_calls.append(("GET", path, params))
+    if path == "/api/health/metadata":
+        return {"legacy_utc_max_record_id": 0}
     if path == "/api/health/records":
         return [
             copy.deepcopy(r) for r in records.values()

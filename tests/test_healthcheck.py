@@ -47,3 +47,10 @@ def test_database_check_is_read_only(temp_db_modules):
 
     assert biocore.check_database() is True
     assert db_path.read_bytes() == before
+
+
+def test_metadata_endpoint_returns_database_specific_legacy_boundary(tmp_path, monkeypatch):
+    api = _load_api(tmp_path, monkeypatch)
+    monkeypatch.setattr(api.biocore, "get_metadata_value", lambda key: "0")
+
+    assert api.health_metadata() == {"legacy_utc_max_record_id": 0}

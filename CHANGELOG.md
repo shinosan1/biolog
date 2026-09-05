@@ -4,6 +4,15 @@ BioLog プロジェクトの全変更履歴です。
 形式は [Keep a Changelog](https://keepachangelog.com/ja/1.1.0/) に従います。
 
 ---
+## [Unreleased]
+
+### Changed
+- `biolog_api/write_repository.py` のUPDATE系構造化ログを、既存の `mask_pii()` 経路へ統一した。現在の値はIDと固定フィールド名だけだが、将来ログ項目が増えた場合も同じマスキング境界を通る。
+
+### Deployment
+- この変更は開発拠点（C）のみにあり、実行拠点（D）と公開拠点（P）には未同期。3拠点一致とは扱わず、デプロイも本変更履歴更新では行わない。
+
+---
 ## [1.7.9] — 2026-08-29
 
 ### Changed

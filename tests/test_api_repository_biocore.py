@@ -161,9 +161,17 @@ def test_insert_upsert_keeps_partial_matches_as_distinct_entries(temp_db_modules
     assert row["activity_log"] == "動画編集\nAI生態資源動画編集"
 
 
-def test_update_keeps_existing_values_for_none_and_reports_empty_or_missing(temp_db_modules):
+def test_update_keeps_existing_values_for_none_and_reports_empty_or_missing(
+    temp_db_modules, monkeypatch, capsys,
+):
     write_repository, biocore, _db_path = temp_db_modules
     write_repository.insert_record(_payload())
+    masked_entries = []
+    monkeypatch.setattr(
+        write_repository,
+        "mask_pii",
+        lambda text: masked_entries.append(text) or "MASKED_UPDATE_LOG",
+    )
 
     assert write_repository.update_record({
         "id": 1,
@@ -173,6 +181,8 @@ def test_update_keeps_existing_values_for_none_and_reports_empty_or_missing(temp
         "meal_detail": "",
         "activity_log": "",
     }) == {"id": 1, "updated": 1}
+    assert masked_entries
+    assert capsys.readouterr().out.strip() == "MASKED_UPDATE_LOG"
 
     row = biocore.get_record_by_id(1)
     assert row["weight"] == 63.4
@@ -209,3 +219,24 @@ def test_delete_existing_and_missing_record(temp_db_modules):
         assert str(e) == "Record 1 not found"
     else:
         raise AssertionError("missing delete did not fail")
+
+
+def test_update_allows_unchanged_legacy_oversized_log(temp_db_modules):
+    write_repository, biocore, db_path = temp_db_modules
+    write_repository.insert_record(_payload())
+    oversized = "a" * 20001
+    conn = __import__("sqlite3").connect(db_path)
+    try:
+        conn.execute("UPDATE health_records SET activity_log = ? WHERE id = 1", (oversized,))
+        conn.commit()
+    finally:
+        conn.close()
+
+    assert write_repository.update_record({"id": 1, "weight": 62.0, "activity_log": oversized}) == {"id": 1, "updated": 1}
+    assert biocore.get_record_by_id(1)["activity_log"] == oversized
+    try:
+        write_repository.insert_record(_payload(request_id="too-long", activity_log="b" * 20001))
+    except ValueError as exc:
+        assert "activity_log" in str(exc)
+    else:
+        raise AssertionError("oversized appended log did not fail")

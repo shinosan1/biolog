@@ -37,6 +37,10 @@ def temp_db_modules(tmp_path, monkeypatch):
     try:
         migration = importlib.import_module("migrations.versions.migrate_001_init")
         migration.run(conn)
+        migration = importlib.import_module(
+            "migrations.versions.migrate_002_request_history_and_metadata"
+        )
+        migration.run(conn)
         conn.commit()
     finally:
         conn.close()

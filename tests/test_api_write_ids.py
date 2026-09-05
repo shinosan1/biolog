@@ -89,6 +89,17 @@ def test_duplicate_request_id_returns_the_stored_record_id(temp_db_modules):
     assert replayed["id"] == 10
 
 
+def test_old_request_replay_does_not_roll_back_a_later_upsert(temp_db_modules):
+    write_repository, biocore, _ = temp_db_modules
+    first = write_repository.insert_record(_payload(request_id="r1", weight=60.0))
+    write_repository.insert_record(_payload(request_id="r2", weight=65.0))
+
+    replayed = write_repository.insert_record(_payload(request_id="r1", weight=60.0))
+
+    assert replayed == {"idempotent": True, "id": first["id"]}
+    assert biocore.get_record_by_id(first["id"])["weight"] == 65.0
+
+
 def test_worker_reports_the_upserted_id_to_the_api_layer(temp_db_modules, monkeypatch):
     write_repository, _, _ = temp_db_modules
     _seed_other_records(write_repository, 9)

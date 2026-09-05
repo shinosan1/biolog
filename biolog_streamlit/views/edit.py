@@ -3,7 +3,7 @@ import streamlit as st
 
 from api_client import ApiClientError, api_delete, api_get, api_put
 from cache import clear_health_caches
-from config import USER_IDS, USER_LABELS
+from config import LEGACY_UTC_MAX_RECORD_ID, USER_IDS, USER_LABELS
 from form_components import (
     accept_latest_measurements,
     render_measurement_inputs,
@@ -21,6 +21,13 @@ def _api_get_with_error(path: str, params: dict = None, suppress_404: bool = Fal
     except ApiClientError as e:
         st.error(f"API エラー: {e.message}")
         return None
+
+
+def _legacy_utc_max_record_id() -> int:
+    metadata = _api_get_with_error("/api/health/metadata")
+    if metadata is None:
+        return LEGACY_UTC_MAX_RECORD_ID
+    return int(metadata["legacy_utc_max_record_id"])
 
 
 def render_edit():
@@ -145,7 +152,8 @@ def render_edit():
         disp["ユーザー"] = USER_LABELS.get(disp.pop("user_id", ""), "")
         if "created_at" in disp and disp["created_at"]:
             disp["created_at"] = to_jst(
-                disp["created_at"], record_id=disp.get("id")
+                disp["created_at"], record_id=disp.get("id"),
+                legacy_utc_max_record_id=_legacy_utc_max_record_id(),
             )
         render_safe_table(pd.DataFrame([disp]))
 

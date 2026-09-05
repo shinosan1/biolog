@@ -43,6 +43,13 @@ def check_database() -> bool:
     return bool(row and row.get("ok") == 1)
 
 
+def get_metadata_value(key: str) -> Optional[str]:
+    row = _execute_read(
+        "SELECT value FROM schema_metadata WHERE key = ?", (key,), one=True
+    )
+    return row["value"] if row is not None else None
+
+
 def get_health_records(
     user_id: Optional[str] = None,
     limit: int = 100,

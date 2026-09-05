@@ -72,8 +72,8 @@ biolog.db (health_records テーブル)
 CREATE TABLE IF NOT EXISTS health_records (
     id           INTEGER PRIMARY KEY AUTOINCREMENT,
     request_id   TEXT    NOT NULL UNIQUE,              -- 冪等性キー (UUID)
-    date         TEXT    NOT NULL CHECK (date GLOB '????-??-??'),
-    user_id      TEXT    NOT NULL CHECK (user_id IN ('self','father','mother')),
+    date         TEXT    NOT NULL,
+    user_id      TEXT    NOT NULL,
     temperature  REAL,   -- 34.0 〜 42.0 ℃
     pulse        INTEGER, -- 30 〜 200 bpm
     systolic_bp  INTEGER, -- 50 〜 250 mmHg

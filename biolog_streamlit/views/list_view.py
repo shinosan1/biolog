@@ -2,7 +2,7 @@ import pandas as pd
 import streamlit as st
 
 from api_client import ApiClientError, api_get
-from config import USER_LABELS
+from config import LEGACY_UTC_MAX_RECORD_ID, USER_LABELS
 from formatters import _safe_str, is_truncated, truncate
 from safe_table import render_safe_table
 from time_utils import to_jst
@@ -15,7 +15,9 @@ def _filter_records(records: list, selected_users: list) -> pd.DataFrame:
     return df[df["user_id"].isin(selected_users)].copy()
 
 
-def _prepare_display(df: pd.DataFrame) -> pd.DataFrame:
+def _prepare_display(
+    df: pd.DataFrame, *, legacy_utc_max_record_id=LEGACY_UTC_MAX_RECORD_ID
+) -> pd.DataFrame:
     df = df.copy()
     df["ユーザー"] = df["user_id"].map(USER_LABELS)
     display_cols = [
@@ -28,7 +30,10 @@ def _prepare_display(df: pd.DataFrame) -> pd.DataFrame:
     disp = df[existing].copy()
     if "created_at" in disp.columns:
         disp["created_at"] = disp.apply(
-            lambda row: to_jst(row["created_at"], record_id=row.get("id")),
+            lambda row: to_jst(
+                row["created_at"], record_id=row.get("id"),
+                legacy_utc_max_record_id=legacy_utc_max_record_id,
+            ),
             axis=1,
         )
     disp = disp.rename(columns={
@@ -70,6 +75,15 @@ def _sanitize_csv_dataframe(df: pd.DataFrame) -> pd.DataFrame:
     return sanitized
 
 
+def _csv_bytes(df: pd.DataFrame) -> bytes:
+    return df.to_csv(index=False).encode("utf-8-sig")
+
+
+def _legacy_utc_max_record_id() -> int:
+    metadata = api_get("/api/health/metadata")
+    return int(metadata["legacy_utc_max_record_id"])
+
+
 @st.fragment(run_every="10s")
 def render_list(selected_users: list, date_start, date_end):
     st.subheader("データ一覧")
@@ -83,6 +97,7 @@ def render_list(selected_users: list, date_start, date_end):
             "/api/health/records/range",
             params={"start": str(date_start), "end": str(date_end)},
         )
+        legacy_utc_max_record_id = _legacy_utc_max_record_id()
     except ApiClientError as e:
         st.error(f"API エラー: {e.message}")
         return
@@ -100,7 +115,9 @@ def render_list(selected_users: list, date_start, date_end):
     if page_df.empty:
         st.info("このページにはデータがありません")
     else:
-        disp = _prepare_display(page_df)
+        disp = _prepare_display(
+            page_df, legacy_utc_max_record_id=legacy_utc_max_record_id
+        )
 
         # 表示用: 長文列を省略
         _LIMITS = {
@@ -141,8 +158,10 @@ def render_list(selected_users: list, date_start, date_end):
                     st.write(full)
 
     # CSV用: 選択ユーザー・指定期間の完全データ（ページングなし）
-    disp_csv = _sanitize_csv_dataframe(_prepare_display(full_df))
-    csv = disp_csv.to_csv(index=False, encoding="utf-8-sig")
+    disp_csv = _sanitize_csv_dataframe(_prepare_display(
+        full_df, legacy_utc_max_record_id=legacy_utc_max_record_id
+    ))
+    csv = _csv_bytes(disp_csv)
     st.download_button(
         label="CSV ダウンロード",
         data=csv,

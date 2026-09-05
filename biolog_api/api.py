@@ -106,6 +106,17 @@ def health_check():
     }
 
 
+@app.get("/api/health/metadata")
+def health_metadata():
+    value = biocore.get_metadata_value("legacy_utc_max_record_id")
+    if value is None:
+        raise HTTPException(status_code=503, detail="Database metadata is unavailable")
+    try:
+        return {"legacy_utc_max_record_id": int(value)}
+    except ValueError:
+        raise HTTPException(status_code=500, detail="Database metadata is invalid")
+
+
 @app.post("/api/health/record", status_code=201)
 async def create_record(request: Request):
     try:

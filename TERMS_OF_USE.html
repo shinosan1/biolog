@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="color-scheme" content="light dark"><title>BioLog 利用規約 | BioLog</title><style>
+:root{color-scheme:light dark;--bg:#f5f8fb;--surface:#fff;--text:#1b2734;--muted:#5b6978;--line:#d6e0e8;--accent:#087990;--code:#edf3f6}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.75}a{color:var(--accent);text-underline-offset:.16em}a:focus-visible{outline:3px solid #f3b622;outline-offset:3px}.site-header{background:#12465a;color:#fff;padding:1.2rem max(1.2rem,calc((100% - 1160px)/2))}.site-header a{color:#fff;text-decoration:none}.site-header strong{font-size:1.1rem}nav{display:flex;flex-wrap:wrap;gap:.35rem .85rem;margin-top:.75rem}nav a{font-size:.9rem;opacity:.95}nav a[aria-current="page"]{font-weight:700;text-decoration:underline}main{max-width:1160px;margin:2rem auto;padding:clamp(1.2rem,3vw,3rem);background:var(--surface);box-shadow:0 2px 14px #14213d14}h1,h2,h3,h4,h5,h6{line-height:1.32;scroll-margin-top:1rem;color:var(--text)}h1{font-size:clamp(1.8rem,4vw,2.65rem);margin-top:0;border-bottom:3px solid var(--accent);padding-bottom:.35rem}h2{margin-top:2.5rem;border-bottom:1px solid var(--line);padding-bottom:.25rem}h3{margin-top:2rem}p,li{overflow-wrap:anywhere}ul,ol{padding-left:1.55rem}li+li{margin-top:.3rem}blockquote{margin:1.25rem 0;padding:.7rem 1rem;border-left:4px solid var(--accent);background:#eaf7f8}pre{overflow:auto;padding:1rem;background:var(--code);border:1px solid var(--line);border-radius:.35rem}code{font-family:ui-monospace,"Cascadia Code",Consolas,monospace;font-size:.92em;background:var(--code);padding:.08em .25em;border-radius:.2rem}pre code{padding:0;background:transparent}table{width:100%;border-collapse:collapse;margin:1.2rem 0;display:block;overflow-x:auto}th,td{border:1px solid var(--line);padding:.55rem .7rem;text-align:left;vertical-align:top}th{background:var(--code)}figure{margin:1.4rem auto;max-width:100%}figure img{display:block;max-width:100%;height:auto;margin:auto;border:1px solid var(--line);border-radius:.35rem}figcaption{text-align:center;color:var(--muted);font-size:.9rem;margin-top:.4rem}hr{border:0;border-top:1px solid var(--line);margin:2rem 0}.doc-footer{max-width:1160px;margin:0 auto 2rem;padding:0 1.2rem;color:var(--muted);font-size:.9rem}@media print{body{background:#fff}.site-header{background:#fff;color:#000;padding:0}.site-header a{color:#000}nav{display:none}main{box-shadow:none;margin:0;max-width:none;padding:0}.doc-footer{display:none}a{color:#000;text-decoration:none}}
+</style></head>
+<body><header class="site-header"><strong><a href="README.html">BioLog Documentation</a></strong><nav aria-label="Documentation navigation"><a href="README.html">README</a><a href="docs/slides.html">Slides</a><a href="biolog_streamlit/操作説明書.html">操作説明書</a><a href="docs/CODE_REFERENCE.html">コード解説</a><a href="TERMS_OF_USE.html" aria-current="page">利用規約</a><a href="PRIVACY_POLICY.html">プライバシー</a><a href="DISCLAIMER.html">免責事項</a><a href="LICENSE.html">ライセンス</a><a href="THIRD_PARTY_LICENSES.html">第三者ライセンス</a><a href="SHA256.html">SHA-256</a></nav></header><main>
+<h1 id="biolog-利用規約">BioLog 利用規約</h1>
+<p>文書バージョン: 2026-07-22-1 / 制定日: 2026年7月14日 / 改定日: 2026年7月22日</p>
+<h2 id="適用と同意">適用と同意</h2>
+<p>本規約は、<a href="https://github.com/shinosan1">shinosan1</a>（以下「開発者」）が公開するオープンソースソフトウェア BioLog（以下「本ソフトウェア」）の利用条件を定めるものです。</p>
+<p>本ソフトウェアを導入・運用する方（以下「運用者」）は、本規約および<a href="PRIVACY_POLICY.html">プライバシーポリシー</a>の内容を確認したうえで本ソフトウェアを利用してください。同意できない場合は、本ソフトウェアを利用しないでください。</p>
+<h2 id="本ソフトウェアについて">本ソフトウェアについて</h2>
+<p>本ソフトウェアは、Docker 上で自己ホストして使う、家族（自分・父・母）の体温・血圧・脈拍・体重・体脂肪・食事ログ・行動ログなどを日次で記録・可視化するための個人向けツールです。データは運用者の環境内の SQLite ファイルに保存され、外部サーバーへの送信はありません。</p>
+<p>本ソフトウェアは README 記載の通り、認証・HTTPS 前提・レート制限を実装していません。ブラウザのクロスオリジンAPI利用は許可していません。標準ComposeはUIとAPIをlocalhostだけに公開し、同一PCからの利用を前提としています。LANやインターネットから到達可能な設定への変更は想定していません。</p>
+<h2 id="対象と利用制限">対象と利用制限</h2>
+<p>本ソフトウェアは個人・家族規模での利用を想定しています。README「Not For」記載の通り、以下の用途は対象外です。</p>
+<ul><li>インターネットへの直接公開（認証・TLS・レート制限なしのため）</li><li>同時 100 以上のユーザーでの利用（単一 Writer、SQLite ファイルのため）</li><li>数百万件規模のデータ</li><li>リアルタイム性が必要な用途</li><li>医療・介護・福祉・雇用等の業務として第三者の健康情報を管理する用途</li></ul>
+<h2 id="家族データ入力時の同意">家族データ入力時の同意</h2>
+<p>運用者が自分以外の家族（father / mother 等）の健康情報を入力する場合、運用者は記録対象となる本人から事前に同意を得てください。本人の同意なく第三者の健康情報を入力・保存しないでください。</p>
+<h2 id="健康・医療に関する注意">健康・医療に関する注意</h2>
+<p>本ソフトウェアは日々の記録を補助するためのツールであり、医療行為、診断、治療、医学的助言を目的とするものではありません。表示された数値や記録内容だけで健康状態を判断しないでください。</p>
+<p>服薬量の調整、受診の要否その他の重要または緊急の健康・医療判断を、本ソフトウェアの表示や記録だけに基づいて行わないでください。体調不良、異常値、健康上の不安がある場合は、本ソフトウェアの表示にかかわらず、医師などの専門家に相談してください。</p>
+<h2 id="データの保存とバックアップ">データの保存とバックアップ</h2>
+<p>健康記録は、運用者が用意した環境の SQLite ファイルに保存されます。開発者は、保存データの永続性、バックアップ、可用性を保証しません。運用者は、README の <a href="README.html#data-persistence">Data Persistence</a> に記載の手順に従い、必要に応じて自らバックアップを取得してください。</p>
+<h2 id="禁止事項">禁止事項</h2>
+<p>運用者は、本ソフトウェアの利用にあたり、次の行為を行わないでください。</p>
+<ul><li>法令または公序良俗に反する行為</li><li>他者の権利、プライバシー、名誉または利益を侵害する行為</li><li>本人の同意または法令上の正当な権限なく、第三者の健康情報その他の個人情報を入力・保存する行為</li><li>README 記載の設計上の注意（認証なし等）を無視してインターネットへ直接公開し、第三者の安全を損なう行為</li><li>不正アクセス、脆弱性の悪用、悪意あるプログラムの配布など、安全性を損なう行為</li></ul>
+<h2 id="著作権と-mit-ライセンス">著作権と MIT ライセンス</h2>
+<p>本ソフトウェアのソースコードは MIT License で公開されています。ソースコードの利用、複製、変更、配布などには、リポジトリに含まれる <a href="LICENSE.html">LICENSE.md</a> の条件が適用されます。本規約は、MIT License によって認められるソースコードの利用を制限するものではありません。</p>
+<h2 id="提供内容の変更・中断・終了">提供内容の変更・中断・終了</h2>
+<p>開発者は、個人プロジェクトとして本ソフトウェアを提供しています。README「Contributing」記載の通り、Pull Request への対応や継続的なメンテナンスを保証するものではありません。本ソフトウェアの機能や提供方法は、予告なく変更・中断されることがあります。重要な記録は、本ソフトウェアの提供状況にかかわらず運用者自身でバックアップしてください。</p>
+<h2 id="免責と責任範囲">免責と責任範囲</h2>
+<p>本ソフトウェアは現状のまま（AS IS）、無保証で提供されます。開発者は、本ソフトウェアに不具合がないこと、正確性、完全性、特定目的への適合性、継続利用可能性、または保存データが失われないことを保証しません。本規約における免責と責任制限は、<a href="LICENSE.html">LICENSE.md</a> に記載の MIT License の規定によります。</p>
+<h2 id="規約の変更">規約の変更</h2>
+<p>本規約を変更する場合は、このページのバージョンと更新日を更新します。</p>
+<h2 id="連絡先">連絡先</h2>
+<p>不具合報告やご質問は、GitHub リポジトリの Issues で受け付けています。</p>
+<p>https://github.com/shinosan1/biolog/issues</p>
+<p>Copyright © 2026 shinosan1</p>
+</main><footer class="doc-footer">このHTMLは対応するMarkdown原本（<a href="TERMS_OF_USE.md">TERMS_OF_USE.md</a>）を閲覧しやすく表示するための文書です。</footer></body></html>
