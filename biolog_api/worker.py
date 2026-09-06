@@ -6,7 +6,7 @@ from queue import Queue
 
 from log_utils import mask_pii
 from queue_manager import get_queue
-from write_repository import delete_record, insert_record, update_record
+from write_repository import delete_record, import_snapshots, insert_record, update_record
 
 
 def _log(op, request_id, queue_size, retry, status, extra=None):
@@ -135,5 +135,8 @@ def _execute_once(task: dict) -> dict:
 
     if op == "delete":
         return delete_record(payload)
+
+    if op == "import":
+        return import_snapshots(payload["rows"])
 
     raise ValueError(f"Unknown operation: {op}")

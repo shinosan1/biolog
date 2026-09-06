@@ -2,6 +2,7 @@ import japanize_matplotlib  # import するだけで日本語フォント有効�
 import matplotlib.dates as mdates
 import matplotlib.pyplot as plt
 from matplotlib.ticker import FuncFormatter
+from math import ceil
 import pandas as pd
 import streamlit as st
 
@@ -59,6 +60,7 @@ def plot_blood_pressure(df: pd.DataFrame, selected_users: list):
     plt.clf()
     fig_bp, ax_bp = plt.subplots(figsize=(10, 4))
     has_bp = False
+    measurement_dates = set()
     for uid in selected_users:
         udf = (
             df[df["user_id"] == uid]
@@ -66,6 +68,7 @@ def plot_blood_pressure(df: pd.DataFrame, selected_users: list):
             .sort_values("date")
         )
         if not udf.empty:
+            measurement_dates.update(udf["date"])
             ax_bp.plot(
                 udf["date"], udf["systolic_bp"],
                 marker="o", label=f"{USER_LABELS[uid]} 収縮期",
@@ -83,14 +86,26 @@ def plot_blood_pressure(df: pd.DataFrame, selected_users: list):
         ax_bp.set_title("血圧 (mmHg)", fontsize=13)
         ax_bp.set_xlabel("日付", fontsize=10)
         ax_bp.set_ylabel("mmHg", fontsize=10)
-        all_dates = sorted(df["date"].unique())
-        ax_bp.set_xticks(all_dates)
+        ax_bp.set_xticks(_blood_pressure_tick_dates(measurement_dates))
         ax_bp.xaxis.set_major_formatter(mdates.DateFormatter("%m-%d"))
         fig_bp.autofmt_xdate(rotation=30)
         ax_bp.legend(loc="upper left", fontsize=9, ncol=2)
-        ax_bp.grid(True, alpha=0.3)
+        ax_bp.grid(axis="y", alpha=0.3)
         plt.tight_layout()
         st.pyplot(fig_bp, clear_figure=True)
     else:
         st.info("血圧データがありません")
     plt.close(fig_bp)
+
+
+def _blood_pressure_tick_dates(measurement_dates, max_ticks: int = 8):
+    """Return measured dates only, limiting labels without hiding either end."""
+    dates = sorted(measurement_dates)
+    if len(dates) <= max_ticks:
+        return dates
+
+    step = ceil((len(dates) - 1) / (max_ticks - 1))
+    ticks = dates[::step]
+    if ticks[-1] != dates[-1]:
+        ticks.append(dates[-1])
+    return ticks

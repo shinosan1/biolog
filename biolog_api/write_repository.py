@@ -1,5 +1,8 @@
 import json
 import sqlite3
+import uuid
+
+from time_utils import now_jst
 
 from db_manager import get_connection
 from log_utils import mask_pii
@@ -201,6 +204,54 @@ def delete_record(payload: dict) -> dict:
         if cur.rowcount == 0:
             raise ValueError(f"Record {record_id} not found")
         return {"id": record_id, "deleted": cur.rowcount}
+
+
+def import_snapshots(rows: list[dict]) -> dict:
+    """Atomically apply complete daily snapshots from a validated CSV."""
+    fields = (
+        "temperature", "pulse", "systolic_bp", "diastolic_bp", "weight",
+        "body_fat", "muscle_mass", "bmr", "meal_detail", "activity_log", "memo",
+    )
+    with get_connection(write=True) as conn:
+        created = updated = skipped = 0
+        for item in rows:
+            payload = item["payload"]
+            existing = conn.execute(
+                "SELECT * FROM health_records WHERE user_id = ? AND date = ?",
+                (payload["user_id"], payload["date"]),
+            ).fetchone()
+            if existing is None:
+                request_id = str(uuid.uuid4())
+                cur = conn.execute(
+                    """
+                    INSERT INTO health_records
+                        (request_id, date, user_id, temperature, pulse, systolic_bp,
+                         diastolic_bp, weight, body_fat, muscle_mass, bmr,
+                         meal_detail, activity_log, memo, created_at)
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                    """,
+                    (
+                        request_id, payload["date"], payload["user_id"],
+                        *(payload[field] for field in fields), now_jst().isoformat(),
+                    ),
+                )
+                conn.execute(
+                    "INSERT INTO request_history (request_id, record_id) VALUES (?, ?)",
+                    (request_id, cur.lastrowid),
+                )
+                created += 1
+                continue
+
+            if all(existing[field] == payload[field] for field in fields):
+                skipped += 1
+                continue
+            set_clause = ", ".join(f"{field} = ?" for field in fields)
+            conn.execute(
+                f"UPDATE health_records SET {set_clause} WHERE id = ?",
+                (*(payload[field] for field in fields), existing["id"]),
+            )
+            updated += 1
+    return {"created": created, "updated": updated, "skipped": skipped, "errors": 0}
 
 
 def _validate_log_lengths(meal_detail, activity_log):

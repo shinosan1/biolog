@@ -1,55 +1,293 @@
 <!doctype html>
 <html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="color-scheme" content="light dark"><title>BioLog | BioLog</title><style>
-:root{color-scheme:light dark;--bg:#f5f8fb;--surface:#fff;--text:#1b2734;--muted:#5b6978;--line:#d6e0e8;--accent:#087990;--code:#edf3f6}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.75}a{color:var(--accent);text-underline-offset:.16em}a:focus-visible{outline:3px solid #f3b622;outline-offset:3px}.site-header{background:#12465a;color:#fff;padding:1.2rem max(1.2rem,calc((100% - 1160px)/2))}.site-header a{color:#fff;text-decoration:none}.site-header strong{font-size:1.1rem}nav{display:flex;flex-wrap:wrap;gap:.35rem .85rem;margin-top:.75rem}nav a{font-size:.9rem;opacity:.95}nav a[aria-current="page"]{font-weight:700;text-decoration:underline}main{max-width:1160px;margin:2rem auto;padding:clamp(1.2rem,3vw,3rem);background:var(--surface);box-shadow:0 2px 14px #14213d14}h1,h2,h3,h4,h5,h6{line-height:1.32;scroll-margin-top:1rem;color:var(--text)}h1{font-size:clamp(1.8rem,4vw,2.65rem);margin-top:0;border-bottom:3px solid var(--accent);padding-bottom:.35rem}h2{margin-top:2.5rem;border-bottom:1px solid var(--line);padding-bottom:.25rem}h3{margin-top:2rem}p,li{overflow-wrap:anywhere}ul,ol{padding-left:1.55rem}li+li{margin-top:.3rem}blockquote{margin:1.25rem 0;padding:.7rem 1rem;border-left:4px solid var(--accent);background:#eaf7f8}pre{overflow:auto;padding:1rem;background:var(--code);border:1px solid var(--line);border-radius:.35rem}code{font-family:ui-monospace,"Cascadia Code",Consolas,monospace;font-size:.92em;background:var(--code);padding:.08em .25em;border-radius:.2rem}pre code{padding:0;background:transparent}table{width:100%;border-collapse:collapse;margin:1.2rem 0;display:block;overflow-x:auto}th,td{border:1px solid var(--line);padding:.55rem .7rem;text-align:left;vertical-align:top}th{background:var(--code)}figure{margin:1.4rem auto;max-width:100%}figure img{display:block;max-width:100%;height:auto;margin:auto;border:1px solid var(--line);border-radius:.35rem}figcaption{text-align:center;color:var(--muted);font-size:.9rem;margin-top:.4rem}hr{border:0;border-top:1px solid var(--line);margin:2rem 0}.doc-footer{max-width:1160px;margin:0 auto 2rem;padding:0 1.2rem;color:var(--muted);font-size:.9rem}@media print{body{background:#fff}.site-header{background:#fff;color:#000;padding:0}.site-header a{color:#000}nav{display:none}main{box-shadow:none;margin:0;max-width:none;padding:0}.doc-footer{display:none}a{color:#000;text-decoration:none}}
+:root{color-scheme:light dark;--bg:#f5f8fb;--surface:#fff;--text:#1b2734;--muted:#5b6978;--line:#d6e0e8;--accent:#087990;--code:#edf3f6}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.75}a{color:var(--accent);text-underline-offset:.16em}a:focus-visible{outline:3px solid #f3b622;outline-offset:3px}.site-header{background:#12465a;color:#fff;padding:1.2rem max(1.2rem,calc((100% - 1160px)/2))}.site-header a{color:#fff;text-decoration:none}.site-header strong{font-size:1.1rem}nav{display:flex;flex-wrap:wrap;gap:.35rem .85rem;margin-top:.75rem}nav a{font-size:.9rem;opacity:.95}nav a[aria-current="page"]{font-weight:700;text-decoration:underline}main{max-width:1160px;margin:2rem auto;padding:clamp(1.2rem,3vw,3rem);background:var(--surface);box-shadow:0 2px 14px #14213d14}h1,h2,h3,h4,h5,h6{line-height:1.32;scroll-margin-top:1rem;color:var(--text)}h1{font-size:clamp(1.8rem,4vw,2.65rem);margin-top:0;border-bottom:3px solid var(--accent);padding-bottom:.35rem}h2{margin-top:2.5rem;border-bottom:1px solid var(--line);padding-bottom:.25rem}h3{margin-top:2rem}p,li{overflow-wrap:anywhere}ul,ol{padding-left:1.55rem}li+li{margin-top:.3rem}blockquote{margin:1.25rem 0;padding:.7rem 1rem;border-left:4px solid var(--accent);background:#eaf7f8}pre{overflow:auto;padding:1rem;background:var(--code);border:1px solid var(--line);border-radius:.35rem}code{font-family:ui-monospace,"Cascadia Code",Consolas,monospace;font-size:.92em;background:var(--code);padding:.08em .25em;border-radius:.2rem}pre code{padding:0;background:transparent}table{width:100%;border-collapse:collapse;margin:1.2rem 0;display:block;overflow-x:auto}th,td{border:1px solid var(--line);padding:.55rem .7rem;text-align:left;vertical-align:top}th{background:var(--code)}figure{margin:1.4rem auto;max-width:100%}figure img{display:block;max-width:100%;height:auto;margin:auto;border:1px solid var(--line);border-radius:.35rem}figcaption{text-align:center;color:var(--muted);font-size:.9rem;margin-top:.4rem}img{max-width:100%;height:auto}hr{border:0;border-top:1px solid var(--line);margin:2rem 0}.doc-footer{max-width:1160px;margin:0 auto 2rem;padding:0 1.2rem;color:var(--muted);font-size:.9rem}@media print{body{background:#fff}.site-header{background:#fff;color:#000;padding:0}.site-header a{color:#000}nav{display:none}main{box-shadow:none;margin:0;max-width:none;padding:0}.doc-footer{display:none}a{color:#000;text-decoration:none}}
 </style></head>
 <body><header class="site-header"><strong><a href="README.html">BioLog Documentation</a></strong><nav aria-label="Documentation navigation"><a href="README.html" aria-current="page">README</a><a href="docs/slides.html">Slides</a><a href="biolog_streamlit/操作説明書.html">操作説明書</a><a href="docs/CODE_REFERENCE.html">コード解説</a><a href="TERMS_OF_USE.html">利用規約</a><a href="PRIVACY_POLICY.html">プライバシー</a><a href="DISCLAIMER.html">免責事項</a><a href="LICENSE.html">ライセンス</a><a href="THIRD_PARTY_LICENSES.html">第三者ライセンス</a><a href="SHA256.html">SHA-256</a></nav></header><main>
 <h1 id="biolog">BioLog</h1>
-<blockquote><p>Personal &amp; family health record tracker. Streamlit + FastAPI + SQLite, self-hosted, <strong>localhost-only by default</strong>.</p></blockquote>
-<figure><img src="docs/screenshots/01-top.png" alt="Top" loading="lazy"><figcaption>Top</figcaption></figure>
-<p>家族（自分・父・母など）の体温・血圧・脈拍・体重・体脂肪・食事ログ・行動ログを 日次で記録・可視化するための個人向けセルフホストアプリです。 SQLite ファイル 1 つで完結し、標準構成では外部サービスへ健康記録を送信しません。</p>
-<p><a href="https://img.shields.io/badge/License-MIT-yellow.svg">![License: MIT</a>](LICENSE.md) <a href="https://img.shields.io/badge/python-3.11-blue.svg">![Python 3.11</a>](https://www.python.org) <a href="https://img.shields.io/badge/docker-required-blue.svg">![Docker</a>](https://www.docker.com)</p>
-<hr>
+<blockquote>
+<p>Personal &amp; family health record tracker.
+Streamlit + FastAPI + SQLite, self-hosted, <strong>localhost-only by default</strong>.</p>
+</blockquote>
+<p><img src="docs/screenshots/01-top.png" alt="Top" /></p>
+<p>家族（自分・父・母など）の体温・血圧・脈拍・体重・体脂肪・食事ログ・行動ログを
+日次で記録・可視化するための個人向けセルフホストアプリです。
+SQLite ファイル 1 つで完結し、標準構成では外部サービスへ健康記録を送信しません。</p>
+<p><a href="LICENSE.md"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License: MIT" /></a>
+<a href="https://www.python.org"><img src="https://img.shields.io/badge/python-3.11-blue.svg" alt="Python 3.11" /></a>
+<a href="https://www.docker.com"><img src="https://img.shields.io/badge/docker-required-blue.svg" alt="Docker" /></a></p>
+<hr />
 <h2 id="security-notice--please-read-first">⚠ Security Notice — Please Read First</h2>
-<p>標準ComposeはBiolog APIの<code>8766</code>とUIの<code>8501</code>を<code>127.0.0.1</code>だけに公開し、<strong>同一PCからの利用</strong>を前提としています。家族別の記録を管理できますが、家族の別端末からのLANアクセスは標準では有効になりません。 インターネット公開を想定していません。以下は <strong>意図的に未実装</strong> です：</p>
-<ul><li>認証（API キー / Basic 認証 / OAuth）<strong>なし</strong></li><li>ブラウザのクロスオリジンAPI利用（CORS許可なし）</li><li>HTTPS / TLS <strong>前提としていない</strong></li><li>レート制限 <strong>なし</strong></li></ul>
+<p>標準ComposeはBiolog APIの<code>8766</code>とUIの<code>8501</code>を<code>127.0.0.1</code>だけに公開し、<strong>同一PCからの利用</strong>を前提としています。家族別の記録を管理できますが、家族の別端末からのLANアクセスは標準では有効になりません。
+インターネット公開を想定していません。以下は <strong>意図的に未実装</strong> です：</p>
+<ul>
+<li>認証（API キー / Basic 認証 / OAuth）<strong>なし</strong></li>
+<li>ブラウザのクロスオリジンAPI利用（CORS許可なし）</li>
+<li>HTTPS / TLS <strong>前提としていない</strong></li>
+<li>レート制限 <strong>なし</strong></li>
+</ul>
 <p><strong>標準のlocalhost限定を解除したまま、インターネットへ直接公開してはいけません。</strong> LAN内の別端末から利用する場合も、ファイアウォール等で接続元を制限してください。クラウド VM 等で運用する場合は、Reverse proxy + 認証層（Cloudflare Access / Tailscale / Basic 認証等）を必ず前段に置いてください。</p>
 <h3 id="データの保管場所">データの保管場所</h3>
-<p>すべてのデータはローカルの SQLite ファイル（デフォルト <code>./data/biolog.db</code>）に保存されます。 標準構成では、健康記録を外部サーバへ送信しません。</p>
-<hr>
+<p>すべてのデータはローカルの SQLite ファイル（デフォルト <code>./data/biolog.db</code>）に保存されます。
+標準構成では、健康記録を外部サーバへ送信しません。</p>
+<hr />
+<h2 id="コード詳細・用語解説">コード詳細・用語解説</h2>
+<p>BioLog の内部構造や専門用語を先に確認したい場合は、ここから確認できます。詳細版は各リンク先にあります。</p>
+<ul>
+<li><strong>コード詳細</strong>: <a href="docs/CODE_REFERENCE.md">docs/CODE_REFERENCE.md</a> — 現行コードの構成、処理フロー、主要モジュールの説明</li>
+<li><strong>用語解説</strong>: <a href="#%E7%94%A8%E8%AA%9E%E8%A7%A3%E8%AA%AC">この README の用語解説</a> — BioLog 固有用語、Web/API、Python、SQLite、Docker などを初心者向けに説明</li>
+<li><strong>仕様書</strong>: <a href="biolog_streamlit/%E4%BB%95%E6%A7%98%E6%9B%B8.md">biolog_streamlit/仕様書.md</a> — アーキテクチャ、データフロー、整合性モデル</li>
+<li><strong>操作説明書</strong>: <a href="biolog_streamlit/%E6%93%8D%E4%BD%9C%E8%AA%AC%E6%98%8E%E6%9B%B8.md">biolog_streamlit/操作説明書.md</a> — 画面操作と日常利用の手順</li>
+<li><strong>API リファレンス</strong>: <a href="biolog_api/skills.md">biolog_api/skills.md</a> — API と curl の利用例</li>
+</ul>
+<h3 id="主要コード構成">主要コード構成</h3>
+<table>
+<thead>
+<tr>
+  <th>場所</th>
+  <th>役割</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>biolog_streamlit/</code></td>
+  <td>画面、入力フォーム、一覧、グラフ、CSV入出力UI</td>
+</tr>
+<tr>
+  <td><code>biolog_api/api.py</code></td>
+  <td>Streamlit から利用する FastAPI エンドポイント</td>
+</tr>
+<tr>
+  <td><code>biolog_api/worker.py</code></td>
+  <td>Queue から書き込み処理を受け取る単一 Writer ワーカー</td>
+</tr>
+<tr>
+  <td><code>biolog_api/write_repository.py</code></td>
+  <td>SQLite への登録・更新・削除・CSVインポート書き込み</td>
+</tr>
+<tr>
+  <td><code>biolog_api/csv_import.py</code></td>
+  <td>CSVの解析、検証、インポート用データへの変換</td>
+</tr>
+<tr>
+  <td><code>biolog_api/migrations/</code></td>
+  <td>新規DB・既存DBのスキーマ更新</td>
+</tr>
+<tr>
+  <td><code>tests/</code></td>
+  <td>API、DB、UIロジック、CSV、migration等の回帰テスト</td>
+</tr>
+</tbody>
+</table>
+<h3 id="先に知っておく用語">先に知っておく用語</h3>
+<table>
+<thead>
+<tr>
+  <th>用語</th>
+  <th>BioLogでの意味</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><strong>Streamlit</strong></td>
+  <td>ブラウザに表示する画面部分</td>
+</tr>
+<tr>
+  <td><strong>FastAPI</strong></td>
+  <td>UIからの要求を受け取り、読み書き処理へ渡すAPI部分</td>
+</tr>
+<tr>
+  <td><strong>SQLite</strong></td>
+  <td>健康記録を保存するローカルDB。標準では <code>./data/biolog.db</code></td>
+</tr>
+<tr>
+  <td><strong>単一 Writer</strong></td>
+  <td>DBへの書き込みを1本のWorkerに集約して競合を避ける方式</td>
+</tr>
+<tr>
+  <td><strong>UPSERT</strong></td>
+  <td>同じユーザー・同じ日付がなければ追加、あれば更新する処理</td>
+</tr>
+<tr>
+  <td><strong>migration</strong></td>
+  <td>既存データを保ちながらDB構造を新しい版へ更新する仕組み</td>
+</tr>
+<tr>
+  <td><strong>冪等性 / request_id</strong></td>
+  <td>同じ要求の再送で重複書き込みや巻き戻りを起こさないための仕組み</td>
+</tr>
+</tbody>
+</table>
+<p>詳しい説明は下部の <a href="#%E7%94%A8%E8%AA%9E%E8%A7%A3%E8%AA%AC">用語解説</a> を参照してください。</p>
+<hr />
 <h2 id="主な機能">主な機能</h2>
-<ul><li>家族メンバー（self / father / mother）ごとの健康データを日次記録</li><li>体温・脈拍・血圧（収縮期/拡張期）・体重・体脂肪率・筋肉量・基礎代謝</li><li>食事ログ / 行動ログ / メモ（長文可、一覧で expander 展開）</li><li>時系列グラフ（matplotlib、複数ユーザー比較）</li><li>CSV エクスポート（UTF-8 BOM 付き、Excel 文字化けなし）</li><li>JST 基準の日付補完（Docker UTC 環境でも正しく動作）</li><li>migration 機構（CREATE TABLE + ALTER 併存で新規/既存両環境対応）</li></ul>
-<hr>
+<ul>
+<li>家族メンバー（self / father / mother）ごとの健康データを日次記録</li>
+<li>体温・脈拍・血圧（収縮期/拡張期）・体重・体脂肪率・筋肉量・基礎代謝</li>
+<li>食事ログ / 行動ログ / メモ（長文可、一覧で expander 展開）</li>
+<li>時系列グラフ（matplotlib、複数ユーザー比較）</li>
+<li>CSV エクスポート（UTF-8 BOM 付き、Excel 文字化けなし）</li>
+<li>CSV インポート（出力CSVの追加・更新による復元。実行前プレビュー付き）</li>
+<li>JST 基準の日付補完（Docker UTC 環境でも正しく動作）</li>
+<li>migration 機構（CREATE TABLE + ALTER 併存で新規/既存両環境対応）</li>
+</ul>
+<h3 id="csv-インポート">CSV インポート</h3>
+<p>「一覧」画面の「CSV インポート」でファイルを選び、「内容を解析」で予定件数とエラーを確認してから「インポートを実行」します。サイドバーのフィルターとは独立してCSV全体を扱います。更新前の状態を残す場合は、先に現在のデータをCSV出力してください。</p>
+<ul>
+<li>BioLogの出力列を持つUTF-8／BOM付きCSVに対応します（CSV本文5 MiB・5,000データ行まで、空行は除外）。</li>
+<li>同じユーザー・対象日はCSVの状態で更新します。測定値の空欄はNULL、メモ・食事ログ・行動ログの空欄は空文字になり、ログは追記しません。CSVにないレコードは変更しません。</li>
+<li>不正行や同一ユーザー・対象日の重複がある場合は取り込みません。実行途中のDBエラーでは全件ロールバックします。予定件数は実行時に再判定し、値が同じ行はスキップします。</li>
+<li><code>id</code>・<code>記録日時</code>・<code>created_at</code>・<code>request_id</code>は取り込みません。既存の識別情報・記録日時を維持し、新規行の記録日時は取り込み時刻になります。</li>
+<li>数式対策の先頭アポストロフィを戻す選択肢があります。元から同じ文字で始まる値とは区別できないため、その場合は選択を解除してください。旧データでも現行の文字数上限を超えるログは取り込めません。自動切り詰めは行いません。</li>
+<li>通信タイムアウトでは書き込み結果が未確認となるため、一覧を更新して確認してください。自動再試行は行いません。</li>
+</ul>
+<hr />
+<h2 id="ドキュメント">ドキュメント</h2>
+<table>
+<thead>
+<tr>
+  <th>ファイル</th>
+  <th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><a href="docs/CODE_REFERENCE.md">docs/CODE_REFERENCE.md</a></td>
+  <td><strong>コード詳細・現行実装の解説</strong></td>
+</tr>
+<tr>
+  <td><a href="#%E7%94%A8%E8%AA%9E%E8%A7%A3%E8%AA%AC">用語解説</a></td>
+  <td><strong>README 内の技術用語・BioLog 固有用語の説明</strong></td>
+</tr>
+<tr>
+  <td><a href="biolog_streamlit/%E6%93%8D%E4%BD%9C%E8%AA%AC%E6%98%8E%E6%9B%B8.md">biolog_streamlit/操作説明書.md</a></td>
+  <td>画面操作手順</td>
+</tr>
+<tr>
+  <td><a href="biolog_streamlit/%E4%BB%95%E6%A7%98%E6%9B%B8.md">biolog_streamlit/仕様書.md</a></td>
+  <td>アーキテクチャ・データフロー・整合性モデル</td>
+</tr>
+<tr>
+  <td><a href="biolog_api/skills.md">biolog_api/skills.md</a></td>
+  <td>API リファレンス（curl 集）</td>
+</tr>
+<tr>
+  <td><a href="CHANGELOG.md">CHANGELOG.md</a></td>
+  <td>バージョン履歴</td>
+</tr>
+<tr>
+  <td><a href="LICENSE.md">LICENSE.md</a></td>
+  <td>ライセンス（MIT License）</td>
+</tr>
+<tr>
+  <td><a href="PRIVACY_POLICY.md">PRIVACY_POLICY.md</a></td>
+  <td>プライバシーポリシー</td>
+</tr>
+<tr>
+  <td><a href="TERMS_OF_USE.md">TERMS_OF_USE.md</a></td>
+  <td>利用規約</td>
+</tr>
+<tr>
+  <td><a href="DISCLAIMER.md">DISCLAIMER.md</a></td>
+  <td>免責事項</td>
+</tr>
+<tr>
+  <td><a href="THIRD_PARTY_LICENSES.md">THIRD_PARTY_LICENSES.md</a></td>
+  <td>サードパーティライセンス</td>
+</tr>
+<tr>
+  <td><a href="SHA256SUMS.txt">SHA256SUMS.txt</a></td>
+  <td>公開対象ファイルの SHA-256 一覧（機械検証用）</td>
+</tr>
+<tr>
+  <td><a href="SHA256.md">SHA256.md</a></td>
+  <td>SHA-256 一覧（閲覧用）</td>
+</tr>
+</tbody>
+</table>
+<hr />
 <h2 id="screenshots">Screenshots</h2>
-<p>&lt;table&gt; &lt;tr&gt; &lt;td&gt;&lt;img src=&quot;docs/screenshots/02-graph.png&quot; alt=&quot;Graph&quot; width=&quot;400&quot;/&gt;&lt;/td&gt; &lt;td&gt;&lt;img src=&quot;docs/screenshots/03-list.png&quot; alt=&quot;List&quot; width=&quot;400&quot;/&gt;&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td align=&quot;center&quot;&gt;時系列グラフ&lt;/td&gt; &lt;td align=&quot;center&quot;&gt;一覧 + 全文 expander&lt;/td&gt; &lt;/tr&gt; &lt;/table&gt;</p>
-<blockquote><p>※ スクリーンショットの数値はすべてダミーデータです</p></blockquote>
-<hr>
+<table>
+  <tr>
+    <td><img src="docs/screenshots/02-graph.png" alt="Graph" width="400"/></td>
+    <td><img src="docs/screenshots/03-list.png" alt="List" width="400"/></td>
+  </tr>
+  <tr>
+    <td align="center">時系列グラフ</td>
+    <td align="center">一覧 + 全文 expander</td>
+  </tr>
+</table>
+
+<blockquote>
+<p>※ スクリーンショットの数値はすべてダミーデータです</p>
+</blockquote>
+<hr />
 <h2 id="system-requirements">System Requirements</h2>
-<ul><li><strong>Docker Desktop</strong> または <strong>Docker Engine + Compose v2</strong>（必須）</li><li>動作確認 OS: <strong>Windows 11 + Docker Desktop</strong></li><li>Linux / macOS は理論上動作するが <strong>未検証</strong></li><li>ディスク: 約 <strong>1 GB</strong>（image + DB）</li><li>メモリ: 2 GB 程度で十分</li><li>ブラウザ: モダンなもの（Chrome / Edge / Firefox / Safari）</li></ul>
-<h3 id="docker-image--build-時間の目安">Docker image / build 時間の目安</h3>
-<div class="table-wrap"><table><thead><tr><th scope="col">項目</th><th scope="col">目安</th></tr></thead><tbody><tr><td>初回 build</td><td>3〜5 分（依存パッケージ download 時間込み）</td></tr><tr><td>2 回目以降</td><td>数十秒（layer cache が効く）</td></tr><tr><td>image 合計サイズ</td><td>約 800 MB〜1 GB（biolog-api + biolog-streamlit）</td></tr></tbody></table></div>
-<p>依存は軽量（FastAPI / Streamlit / matplotlib / pandas / requests）。 GPU / CUDA / ML フレームワークは <strong>使用しません</strong>。</p>
-<hr>
+<ul>
+<li><strong>Docker Desktop</strong> または <strong>Docker Engine + Compose v2</strong>（必須）</li>
+<li>動作確認 OS: <strong>Windows 11 + Docker Desktop</strong><ul>
+<li>Linux / macOS は理論上動作するが <strong>未検証</strong></li>
+</ul>
+</li>
+<li>ディスク: 約 <strong>1 GB</strong>（image + DB）</li>
+<li>メモリ: 2 GB 程度で十分</li>
+<li>ブラウザ: モダンなもの（Chrome / Edge / Firefox / Safari）</li>
+</ul>
+<h3 id="docker-image-build-時間の目安">Docker image / build 時間の目安</h3>
+<table>
+<thead>
+<tr>
+  <th>項目</th>
+  <th>目安</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>初回 build</td>
+  <td>3〜5 分（依存パッケージ download 時間込み）</td>
+</tr>
+<tr>
+  <td>2 回目以降</td>
+  <td>数十秒（layer cache が効く）</td>
+</tr>
+<tr>
+  <td>image 合計サイズ</td>
+  <td>約 800 MB〜1 GB（biolog-api + biolog-streamlit）</td>
+</tr>
+</tbody>
+</table>
+<p>依存は軽量（FastAPI / Streamlit / matplotlib / pandas / requests）。
+GPU / CUDA / ML フレームワークは <strong>使用しません</strong>。</p>
+<hr />
 <h2 id="quick-start">Quick Start</h2>
-<blockquote><p>Docker と git の基本操作に慣れていることを前提とします。</p></blockquote>
+<blockquote>
+<p>Docker と git の基本操作に慣れていることを前提とします。</p>
+</blockquote>
 <h3 id="1-clone">1. Clone</h3>
 <pre><code class="language-bash">git clone https://github.com/shinosan1/biolog.git
-cd biolog</code></pre>
+cd biolog
+</code></pre>
 <h3 id="2-環境変数任意">2. 環境変数（任意）</h3>
-<p>デフォルトでは <code>./data</code> ディレクトリに DB が作られます。 別の場所に置きたい場合のみ <code>.env</code> を作成：</p>
+<p>デフォルトでは <code>./data</code> ディレクトリに DB が作られます。
+別の場所に置きたい場合のみ <code>.env</code> を作成：</p>
 <pre><code class="language-bash">cp .env.sample .env
-# エディタで BIOLOG_DATA_DIR を編集</code></pre>
+# エディタで BIOLOG_DATA_DIR を編集
+</code></pre>
 <h3 id="3-起動">3. 起動</h3>
-<pre><code class="language-bash">docker compose up -d --build</code></pre>
+<pre><code class="language-bash">docker compose up -d --build
+</code></pre>
 <p>初回のみ image build に 3〜5 分かかります。</p>
 <h3 id="4-アクセス">4. アクセス</h3>
-<p>ブラウザで http://localhost:8501</p>
+<p>ブラウザで <a href="http://localhost:8501">http://localhost:8501</a></p>
 <p>ヘルスチェック：</p>
 <pre><code class="language-bash">curl http://localhost:8766/api/health/health
-# {&quot;status&quot;:&quot;ok&quot;,&quot;db&quot;:&quot;/data/biolog.db&quot;}</code></pre>
+# {&quot;status&quot;:&quot;ok&quot;,&quot;worker_alive&quot;:true,&quot;database_ok&quot;:true,&quot;queue&quot;:{&quot;size&quot;:0,&quot;max_size&quot;:100}}
+</code></pre>
 <h3 id="5-停止">5. 停止</h3>
-<pre><code class="language-bash">docker compose down</code></pre>
-<p>DB ファイルは <code>${BIOLOG_DATA_DIR:-./data}/biolog.db</code> に永続化されているので、 <code>docker compose down</code> してもデータは残ります。</p>
-<hr>
+<pre><code class="language-bash">docker compose down
+</code></pre>
+<p>DB ファイルは <code>${BIOLOG_DATA_DIR:-./data}/biolog.db</code> に永続化されているので、
+<code>docker compose down</code> してもデータは残ります。</p>
+<hr />
 <h2 id="architecture">Architecture</h2>
 <pre><code>┌────────────────────┐    HTTP     ┌──────────────────┐
 │ Streamlit (8501)   │ ──────────► │ FastAPI (8766)   │
@@ -69,443 +307,926 @@ cd biolog</code></pre>
                                   ┌──────────────────┐
                                   │ SQLite           │
                                   │ /data/biolog.db  │
-                                  └──────────────────┘</code></pre>
-<p>詳細は <a href="biolog_streamlit/仕様書.md">仕様書</a> を参照。</p>
-<hr>
+                                  └──────────────────┘
+</code></pre>
+<p>詳細は <a href="biolog_streamlit/%E4%BB%95%E6%A7%98%E6%9B%B8.md">仕様書</a> を参照。</p>
+<hr />
 <h2 id="design-rationale">Design Rationale</h2>
 <h3 id="why-sqlite">Why SQLite?</h3>
-<div class="table-wrap"><table><thead><tr><th scope="col">観点</th><th scope="col">理由</th></tr></thead><tbody><tr><td><strong>デプロイ簡易性</strong></td><td>ファイル 1 つ。バックアップは <code>cp</code> だけ</td></tr><tr><td><strong>依存最小</strong></td><td>別 DB サーバ不要、Docker compose が biolog-api + biolog-streamlit のみで完結</td></tr><tr><td><strong>個人/家族規模で十分</strong></td><td>レコード数は年間数千件程度。リクエスト頻度も 1 秒に 1 件未満</td></tr><tr><td><strong>WAL 不要設計</strong></td><td>Windows + NTFS bind mount で WAL モードが I/O エラーを誘発するため、<code>PRAGMA journal_mode=DELETE</code> を強制</td></tr></tbody></table></div>
+<table>
+<thead>
+<tr>
+  <th>観点</th>
+  <th>理由</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><strong>デプロイ簡易性</strong></td>
+  <td>ファイル 1 つ。バックアップは <code>cp</code> だけ</td>
+</tr>
+<tr>
+  <td><strong>依存最小</strong></td>
+  <td>別 DB サーバ不要、Docker compose が biolog-api + biolog-streamlit のみで完結</td>
+</tr>
+<tr>
+  <td><strong>個人/家族規模で十分</strong></td>
+  <td>レコード数は年間数千件程度。リクエスト頻度も 1 秒に 1 件未満</td>
+</tr>
+<tr>
+  <td><strong>WAL 不要設計</strong></td>
+  <td>Windows + NTFS bind mount で WAL モードが I/O エラーを誘発するため、<code>PRAGMA journal_mode=DELETE</code> を強制</td>
+</tr>
+</tbody>
+</table>
 <h3 id="concurrency-model単一-writer">Concurrency Model（単一 Writer）</h3>
 <p>書き込みは <strong>1 本の Worker スレッド</strong> に集約しています：</p>
-<pre><code>HTTP Request → FastAPI → Queue → Worker (1) → db_manager → SQLite</code></pre>
+<pre><code>HTTP Request → FastAPI → Queue → Worker (1) → db_manager → SQLite
+</code></pre>
 <p>これにより：</p>
-<ul><li><code>database is locked</code> エラーを <strong>構造的に回避</strong></li><li>リトライロジックを worker.py の 1 箇所に集約</li><li>BEGIN IMMEDIATE / commit / rollback のトランザクション境界が明確</li></ul>
+<ul>
+<li><code>database is locked</code> エラーを <strong>構造的に回避</strong></li>
+<li>リトライロジックを worker.py の 1 箇所に集約</li>
+<li>BEGIN IMMEDIATE / commit / rollback のトランザクション境界が明確</li>
+</ul>
 <h3 id="cache-invalidation">Cache Invalidation</h3>
-<p><code>@st.cache_data(ttl=10)</code> を読み取りキャッシュとして使用。書き込み成功時と サイドバー「更新」で <code>clear_health_caches()</code> を呼び、次の 2 つを併用して invalidate する。</p>
-<ul><li><code>fetch_latest.clear()</code> / <code>fetch_range_data.clear()</code> — per-function、プロセス全体を破棄</li><li><code>st.session_state.data_version</code> の更新 — セッション単位でキャッシュキーの世代を進める</li></ul>
-<p><code>data_version</code> の初期値は <code>int(time.time())</code>。0 起点にすると新しいセッションが 過去セッションのキャッシュキーに衝突するため、これを構造的に避けている。 TTL 10 秒は、書き込み直後にまだ反映前の値を取得してしまった場合の滞留時間の上限。</p>
-<p><strong>履歴</strong>：version 機構は初期値 0 によるセッション跨ぎの衝突が原因で v1.5.5 に一度廃止され、 初期値を <code>int(time.time())</code> に変えて v1.5.7 で再導入された。その後 v1.6.0 の 「非破壊分割」の際に廃止理由の記録なく失われていたため、v1.7.8 で復元している。</p>
-<hr>
+<p><code>@st.cache_data(ttl=10)</code> を読み取りキャッシュとして使用。書き込み成功時と
+サイドバー「更新」で <code>clear_health_caches()</code> を呼び、次の 2 つを併用して invalidate する。</p>
+<ul>
+<li><code>fetch_latest.clear()</code> / <code>fetch_range_data.clear()</code> — per-function、プロセス全体を破棄</li>
+<li><code>st.session_state.data_version</code> の更新 — セッション単位でキャッシュキーの世代を進める</li>
+</ul>
+<p><code>data_version</code> の初期値は <code>int(time.time())</code>。0 起点にすると新しいセッションが
+過去セッションのキャッシュキーに衝突するため、これを構造的に避けている。
+TTL 10 秒は、書き込み直後にまだ反映前の値を取得してしまった場合の滞留時間の上限。</p>
+<p><strong>履歴</strong>：version 機構は初期値 0 によるセッション跨ぎの衝突が原因で v1.5.5 に一度廃止され、
+初期値を <code>int(time.time())</code> に変えて v1.5.7 で再導入された。その後 v1.6.0 の
+「非破壊分割」の際に廃止理由の記録なく失われていたため、v1.7.8 で復元している。</p>
+<hr />
 <h2 id="not-forこのアプリはには向きません">Not For（このアプリは○○には向きません）</h2>
-<ul><li>❌ <strong>インターネット公開</strong>（認証・TLS・レート制限なし）</li><li>❌ <strong>同時 100+ ユーザー</strong>（単一 Writer、SQLite ファイル）</li><li>❌ <strong>数百万件のデータ</strong>（SQLite で動くが、グラフ描画が重くなる）</li><li>❌ <strong>リアルタイム性が必要なユースケース</strong>（Eventual Consistency 設計、書き込みから表示まで数秒）</li><li>❌ <strong>マルチテナント / 不特定多数のユーザー</strong>（user_id は固定 3 種：self / father / mother）</li></ul>
+<ul>
+<li>❌ <strong>インターネット公開</strong>（認証・TLS・レート制限なし）</li>
+<li>❌ <strong>同時 100+ ユーザー</strong>（単一 Writer、SQLite ファイル）</li>
+<li>❌ <strong>数百万件のデータ</strong>（SQLite で動くが、グラフ描画が重くなる）</li>
+<li>❌ <strong>リアルタイム性が必要なユースケース</strong>（Eventual Consistency 設計、書き込みから表示まで数秒）</li>
+<li>❌ <strong>マルチテナント / 不特定多数のユーザー</strong>（user_id は固定 3 種：self / father / mother）</li>
+</ul>
 <h2 id="2026-07-27-安定性・監査対応">2026-07-27 安定性・監査対応</h2>
-<ul><li>Worker内の各書き込みタスクを例外隔離し、レコード不在や不正タスクで</li></ul>
-<p>単一Writerスレッド全体が停止しないようにした。</p>
-<ul><li>Worker応答が30秒以内に返らない場合は、未処理の500ではなく503を返す。</li><li>API healthはWorker生存、DB読取疎通、Queue使用量を返す。</li></ul>
-<p>Docker Composeのhealthcheckは状態の可視化用であり、<code>unhealthy</code>だけでは コンテナは自動再起動されない。</p>
-<ul><li>一覧とCSVは、指定期間および選択ユーザーだけを対象とする。</li></ul>
-<p>CSVは現在ページではなく指定範囲の全件を出力する。</p>
-<ul><li>SQLiteは<code>journal_mode=DELETE</code>を維持し、有限のbusy timeoutと短い読取リトライを使う。</li><li>APIはページング負値、不正日付、逆転期間、JSONオブジェクト以外、</li></ul>
-<p>過大なテキストを拒否する。<code>preprocess.py</code>の既存の整数型補正は維持する。</p>
-<ul><li>コンテナ時刻は<code>Asia/Tokyo</code>へ統一し、Streamlit利用統計を無効化した。</li><li>CSVの文字列が<code>=</code>, <code>+</code>, <code>-</code>, <code>@</code>で始まる場合は、表計算ソフトで</li></ul>
-<p>数式として実行されないよう無害化する。</p>
-<ul><li>Linuxコンテナの追加capabilityはすべて破棄する。</li><li>APIとStreamlitはUID/GID <code>10001</code>の非rootユーザーで実行する。</li></ul>
-<p><code>/data</code>のバインドマウントは運用反映前に書き込み権限を確認する。</p>
-<ul><li><code>constraints.txt</code>で、2026-07-27時点の動作中イメージから採取した</li></ul>
-<p>推移依存パッケージの版を固定する。</p>
-<p>Streamlitの<code>Cannot load Streamlit frontend code</code>は原因未確定である。 再発時は<a href="docs/NETWORK_ISSUE_DIAGNOSTICS.md">NETWORK_ISSUE_DIAGNOSTICS.md</a>に従い、 Docker再起動前にブラウザ、HTTP、コンテナ、スリープ復帰の証拠を採取する。</p>
+<ul>
+<li>Worker内の各書き込みタスクを例外隔離し、レコード不在や不正タスクで
+単一Writerスレッド全体が停止しないようにした。</li>
+<li>Worker応答が30秒以内に返らない場合は、未処理の500ではなく503を返す。</li>
+<li>API healthはWorker生存、DB読取疎通、Queue使用量を返す。
+Docker Composeのhealthcheckは状態の可視化用であり、<code>unhealthy</code>だけでは
+コンテナは自動再起動されない。</li>
+<li>一覧とCSVは、指定期間および選択ユーザーだけを対象とする。
+CSVは現在ページではなく指定範囲の全件を出力する。</li>
+<li>SQLiteは<code>journal_mode=DELETE</code>を維持し、有限のbusy timeoutと短い読取リトライを使う。</li>
+<li>APIはページング負値、不正日付、逆転期間、JSONオブジェクト以外、
+過大なテキストを拒否する。<code>preprocess.py</code>の既存の整数型補正は維持する。</li>
+<li>コンテナ時刻は<code>Asia/Tokyo</code>へ統一し、Streamlit利用統計を無効化した。</li>
+<li>CSVの文字列が<code>=</code>, <code>+</code>, <code>-</code>, <code>@</code>で始まる場合は、表計算ソフトで
+数式として実行されないよう無害化する。</li>
+<li>Linuxコンテナの追加capabilityはすべて破棄する。</li>
+<li>APIとStreamlitはUID/GID <code>10001</code>の非rootユーザーで実行する。
+<code>/data</code>のバインドマウントは運用反映前に書き込み権限を確認する。</li>
+<li><code>constraints.txt</code>で、2026-07-27時点の動作中イメージから採取した
+推移依存パッケージの版を固定する。</li>
+</ul>
+<p>Streamlitの<code>Cannot load Streamlit frontend code</code>は原因未確定である。
+再発時は<a href="docs/NETWORK_ISSUE_DIAGNOSTICS.md">NETWORK_ISSUE_DIAGNOSTICS.md</a>に従い、
+Docker再起動前にブラウザ、HTTP、コンテナ、スリープ復帰の証拠を採取する。</p>
 <p>これらが必要な場合は別のスタック（PostgreSQL + 認証付きフレームワーク等）を検討してください。</p>
-<hr>
+<hr />
 <h2 id="data-persistence">Data Persistence</h2>
 <h3 id="デフォルト動作">デフォルト動作</h3>
 <pre><code class="language-yaml"># docker-compose.yml
 volumes:
-  - ${BIOLOG_DATA_DIR:-./data}:/data</code></pre>
-<ul><li>環境変数未設定なら、リポジトリ直下の <code>./data/</code> にバインドマウント</li><li>初回起動時に <code>./data/biolog.db</code> が <strong>migration runner により自動生成</strong></li></ul>
+  - ${BIOLOG_DATA_DIR:-./data}:/data
+</code></pre>
+<ul>
+<li>環境変数未設定なら、リポジトリ直下の <code>./data/</code> にバインドマウント</li>
+<li>初回起動時に <code>./data/biolog.db</code> が <strong>migration runner により自動生成</strong></li>
+</ul>
 <h3 id="バックアップ">バックアップ</h3>
 <pre><code class="language-bash">docker compose down                    # 安全のため停止
 cp ./data/biolog.db ./backup/biolog_$(date +%Y%m%d).db
-docker compose up -d</code></pre>
+docker compose up -d
+</code></pre>
 <h3 id="別の場所に置く">別の場所に置く</h3>
 <p><code>.env</code> を作成：</p>
 <pre><code class="language-bash"># Windows 例
 BIOLOG_DATA_DIR=D:/AI/biolog/data
 
 # Linux 例
-BIOLOG_DATA_DIR=/var/lib/biolog</code></pre>
-<hr>
-<h2 id="known-issues--limitations">Known Issues / Limitations</h2>
+BIOLOG_DATA_DIR=/var/lib/biolog
+</code></pre>
+<hr />
+<h2 id="known-issues-limitations">Known Issues / Limitations</h2>
 <p>正直に列挙します。</p>
 <h3 id="resolved修正済み">Resolved（修正済み）</h3>
-<ul><li>✅ セッション跨ぎで古いキャッシュが残る問題 → v1.5.5 で version 機構廃止、per-function clear に変更</li><li>✅ 深夜 0〜9 時 (JST) に登録すると date が前日になる → v1.5.0 で <code>jst_date()</code> 統一</li><li>✅ 新規環境で <code>health_records</code> テーブル不在で起動失敗 → v1.5.2 で <code>CREATE TABLE IF NOT EXISTS</code> 追加</li><li>✅ migration runner の手動実行忘れ → v1.5.3 で entrypoint.sh による自動化</li><li>✅ 新規登録成功後もフォームに前回の入力値が残る → v1.7.6 で修正（登録成功時のみリセット、エラー時は入力を維持）</li><li>✅ 同一ユーザー・同一日付の再登録で API が <code>id=0</code> を返す → v1.7.6 で修正（UPSERT 後に実レコード ID を取得）</li><li>✅ v1.5.7 のキャッシュ version 機構が v1.6.0 の分割で失われていた退行 → v1.7.8 で復元（per-function clear / TTL と併用）</li></ul>
+<ul>
+<li>✅ セッション跨ぎで古いキャッシュが残る問題 → v1.5.5 で version 機構廃止、per-function clear に変更</li>
+<li>✅ 深夜 0〜9 時 (JST) に登録すると date が前日になる → v1.5.0 で <code>jst_date()</code> 統一</li>
+<li>✅ 新規環境で <code>health_records</code> テーブル不在で起動失敗 → v1.5.2 で <code>CREATE TABLE IF NOT EXISTS</code> 追加</li>
+<li>✅ migration runner の手動実行忘れ → v1.5.3 で entrypoint.sh による自動化</li>
+<li>✅ 新規登録成功後もフォームに前回の入力値が残る → v1.7.6 で修正（登録成功時のみリセット、エラー時は入力を維持）</li>
+<li>✅ 同一ユーザー・同一日付の再登録で API が <code>id=0</code> を返す → v1.7.6 で修正（UPSERT 後に実レコード ID を取得）</li>
+<li>✅ v1.5.7 のキャッシュ version 機構が v1.6.0 の分割で失われていた退行 → v1.7.8 で復元（per-function clear / TTL と併用）</li>
+</ul>
 <h3 id="open既知の未解決">Open（既知の未解決）</h3>
-<ul><li>⚠ <strong>migration_lock の stale 残存</strong>：コンテナ強制終了で finally が走らないとロックが残る。手動 <code>DELETE FROM migration_lock WHERE id = 1</code> で復旧</li><li>⚠ <strong>runner.py の lock 競合時 exit 0 仕様</strong>：lock 残存時 runner は何もせず exit 0 → schema 未整備のまま API が起動する可能性あり</li><li>⚠ <strong>CHECK 制約未実装</strong>：DB レベル制約は無し、Pydantic 層のみで範囲検証している（DB 直接編集時の弱点）</li><li>⚠ <strong><code>updated_at</code> カラム未実装</strong>：UPDATE しても created_at は変わらない。監査ログ用途には不十分</li></ul>
-<h3 id="untested--unverified未検証範囲">Untested / Unverified（未検証範囲）</h3>
-<ul><li>🔍 <strong>Linux / macOS での動作</strong>：理論上動くはずだが、Windows 以外での動作確認は未実施</li><li>🔍 <strong>大量データ（数万件以上）</strong>：性能未測定、グラフ描画速度に影響する可能性</li><li>🔍 <strong>長時間連続稼働</strong>：数ヶ月レベルの常時稼働は未検証</li><li>🔍 <strong>マルチアーキテクチャ image</strong>：amd64 でのみ確認済み、arm64 未検証</li><li>🔍 <strong>同一データに対する複数 Streamlit インスタンス</strong>：cache が分離するため、別タブで編集 → 別タブで未反映の可能性</li></ul>
+<ul>
+<li>⚠ <strong>migration_lock の stale 残存</strong>：コンテナ強制終了で finally が走らないとロックが残る。手動 <code>DELETE FROM migration_lock WHERE id = 1</code> で復旧</li>
+<li>⚠ <strong>runner.py の lock 競合時 exit 0 仕様</strong>：lock 残存時 runner は何もせず exit 0 → schema 未整備のまま API が起動する可能性あり</li>
+<li>⚠ <strong>CHECK 制約未実装</strong>：DB レベル制約は無し、Pydantic 層のみで範囲検証している（DB 直接編集時の弱点）</li>
+<li>⚠ <strong><code>updated_at</code> カラム未実装</strong>：UPDATE しても created_at は変わらない。監査ログ用途には不十分</li>
+</ul>
+<h3 id="untested-unverified未検証範囲">Untested / Unverified（未検証範囲）</h3>
+<ul>
+<li>🔍 <strong>Linux / macOS での動作</strong>：理論上動くはずだが、Windows 以外での動作確認は未実施</li>
+<li>🔍 <strong>大量データ（数万件以上）</strong>：性能未測定、グラフ描画速度に影響する可能性</li>
+<li>🔍 <strong>長時間連続稼働</strong>：数ヶ月レベルの常時稼働は未検証</li>
+<li>🔍 <strong>マルチアーキテクチャ image</strong>：amd64 でのみ確認済み、arm64 未検証</li>
+<li>🔍 <strong>同一データに対する複数 Streamlit インスタンス</strong>：cache が分離するため、別タブで編集 → 別タブで未反映の可能性</li>
+</ul>
 <h3 id="out-of-scope対応予定なし">Out of Scope（対応予定なし）</h3>
-<ul><li>❌ マルチユーザー認証</li><li>❌ クラウド DB 対応</li><li>❌ モバイルアプリ</li><li>❌ 機械学習による予測</li></ul>
-<hr>
+<ul>
+<li>❌ マルチユーザー認証</li>
+<li>❌ クラウド DB 対応</li>
+<li>❌ モバイルアプリ</li>
+<li>❌ 機械学習による予測</li>
+</ul>
+<hr />
 <h2 id="troubleshooting">Troubleshooting</h2>
-<h3 id="streamlit-が起動しない--syntaxerror">Streamlit が起動しない / SyntaxError</h3>
-<pre><code class="language-bash">docker logs biolog-streamlit --tail 50</code></pre>
+<h3 id="streamlit-が起動しない-syntaxerror">Streamlit が起動しない / SyntaxError</h3>
+<pre><code class="language-bash">docker logs biolog-streamlit --tail 50
+</code></pre>
 <p>ファイル編集ミスが最有力。差し戻して再起動：</p>
-<pre><code class="language-bash">docker compose restart biolog-streamlit</code></pre>
+<pre><code class="language-bash">docker compose restart biolog-streamlit
+</code></pre>
 <h3 id="api-ヘルスチェックが失敗">API ヘルスチェックが失敗</h3>
 <pre><code class="language-bash">docker logs biolog-api --tail 50
-curl http://localhost:8766/api/health/health</code></pre>
+curl http://localhost:8766/api/health/health
+</code></pre>
 <h3 id="migration-lock-existsで-api-が起動しない">「Migration lock exists」で API が起動しない</h3>
 <pre><code class="language-bash">docker exec biolog-api python -c &quot;
 import sqlite3
-conn = sqlite3.connect(&#x27;/data/biolog.db&#x27;)
-conn.execute(&#x27;DELETE FROM migration_lock WHERE id = 1&#x27;)
+conn = sqlite3.connect('/data/biolog.db')
+conn.execute('DELETE FROM migration_lock WHERE id = 1')
 conn.commit()
 conn.close()
-print(&#x27;Lock released&#x27;)
+print('Lock released')
 &quot;
-docker compose restart biolog-api</code></pre>
+docker compose restart biolog-api
+</code></pre>
 <h3 id="database-is-locked-が頻発"><code>database is locked</code> が頻発</h3>
-<ul><li>WAL モード残骸を確認：<code>./data/biolog.db-wal</code> / <code>./data/biolog.db-shm</code> ファイルがあれば削除</li><li>WAL モードは <code>db_manager.py</code> で禁止しているが、過去に手動 PRAGMA を実行した場合は残ることがある</li></ul>
+<ul>
+<li>WAL モード残骸を確認：<code>./data/biolog.db-wal</code> / <code>./data/biolog.db-shm</code> ファイルがあれば削除</li>
+<li>WAL モードは <code>db_manager.py</code> で禁止しているが、過去に手動 PRAGMA を実行した場合は残ることがある</li>
+</ul>
 <h3 id="表示が古い">表示が古い</h3>
-<ul><li>サイドバー「更新」ボタンを押す</li><li>ブラウザを完全リロード（Ctrl + F5）</li></ul>
+<ul>
+<li>サイドバー「更新」ボタンを押す</li>
+<li>ブラウザを完全リロード（Ctrl + F5）</li>
+</ul>
 <h3 id="ポート競合">ポート競合</h3>
-<ul><li>biolog-api: 8766、biolog-streamlit: 8501</li><li>他で使用中なら <code>docker-compose.override.yml</code> で port を変更</li></ul>
-<hr>
+<ul>
+<li>biolog-api: 8766、biolog-streamlit: 8501</li>
+<li>他で使用中なら <code>docker-compose.override.yml</code> で port を変更</li>
+</ul>
+<hr />
 <h2 id="roadmap参考">Roadmap（参考）</h2>
 <p>監査由来の未着手タスク：</p>
-<ul><li>M1: <code>schemas.py</code> の date に <code>YYYY-MM-DD</code> 形式バリデータ追加</li><li>M2: API queue.Empty を 504 Gateway Timeout で返却</li><li>L1: biocore.py の <code>SELECT *</code> を明示列指定に置換</li></ul>
+<ul>
+<li>M1: <code>schemas.py</code> の date に <code>YYYY-MM-DD</code> 形式バリデータ追加</li>
+<li>M2: API queue.Empty を 504 Gateway Timeout で返却</li>
+<li>L1: biocore.py の <code>SELECT *</code> を明示列指定に置換</li>
+</ul>
 <p>優先度は低く、現状で実害なし。</p>
-<hr>
-<h2 id="ドキュメント">ドキュメント</h2>
-<div class="table-wrap"><table><thead><tr><th scope="col">ファイル</th><th scope="col">内容</th></tr></thead><tbody><tr><td><a href="CHANGELOG.md">CHANGELOG.md</a></td><td>バージョン履歴</td></tr><tr><td><a href="biolog_streamlit/仕様書.md">biolog_streamlit/仕様書.md</a></td><td>アーキテクチャ・データフロー・整合性モデル</td></tr><tr><td><a href="biolog_streamlit/操作説明書.html">biolog_streamlit/操作説明書.md</a></td><td>画面操作手順</td></tr><tr><td><a href="biolog_api/skills.md">biolog_api/skills.md</a></td><td>API リファレンス（curl 集）</td></tr><tr><td><a href="docs/CODE_REFERENCE.html">docs/CODE_REFERENCE.md</a></td><td>コード解説（現行版）</td></tr><tr><td><a href="LICENSE.html">LICENSE.md</a></td><td>ライセンス（MIT License）</td></tr><tr><td><a href="PRIVACY_POLICY.html">PRIVACY_POLICY.md</a></td><td>プライバシーポリシー</td></tr><tr><td><a href="TERMS_OF_USE.html">TERMS_OF_USE.md</a></td><td>利用規約</td></tr><tr><td><a href="DISCLAIMER.html">DISCLAIMER.md</a></td><td>免責事項</td></tr><tr><td><a href="THIRD_PARTY_LICENSES.html">THIRD_PARTY_LICENSES.md</a></td><td>サードパーティライセンス</td></tr><tr><td><a href="SHA256SUMS.txt">SHA256SUMS.txt</a></td><td>公開ファイルのSHA-256一覧（機械検証用）</td></tr><tr><td><a href="SHA256.html">SHA256.md</a></td><td>SHA-256一覧（3拠点比較レポート）</td></tr></tbody></table></div>
-<hr>
+<hr />
 <h2 id="用語解説">用語解説</h2>
-<p>この README に登場する用語のうち、Web 開発やプログラミングを専門にしていない方が 読むときに意味を調べる必要がありそうなものをまとめました。 「一般的な意味」と「BioLog では何に使っているか」の両方を書いています。</p>
+<p>この README に登場する用語のうち、Web 開発やプログラミングを専門にしていない方が
+読むときに意味を調べる必要がありそうなものをまとめました。
+「一般的な意味」と「BioLog では何に使っているか」の両方を書いています。</p>
 <h3 id="biolog・アプリ構成">BioLog・アプリ構成</h3>
 <h4 id="biolog-1">BioLog</h4>
-<p>このアプリの名前。家族（自分・父・母）の健康記録を 1 日 1 件ずつ記録・表示する、 個人利用向けのアプリ。画面部分（Streamlit）と処理部分（FastAPI）と保存部分（SQLite）の 3 つを組み合わせて動く。</p>
+<p>このアプリの名前。家族（自分・父・母）の健康記録を 1 日 1 件ずつ記録・表示する、
+個人利用向けのアプリ。画面部分（Streamlit）と処理部分（FastAPI）と保存部分（SQLite）の
+3 つを組み合わせて動く。</p>
 <h4 id="セルフホストself-hosted">セルフホスト（self-hosted）</h4>
 <p>サービス提供会社のサーバではなく、利用者自身のパソコンやサーバでソフトを動かす形態。</p>
-<p>BioLog は自分の PC 上で動かし、健康記録も自分の PC 内のファイルに保存する。 標準構成では、記録が外部のサーバへ送られることはない。</p>
+<p>BioLog は自分の PC 上で動かし、健康記録も自分の PC 内のファイルに保存する。
+標準構成では、記録が外部のサーバへ送られることはない。</p>
 <h4 id="レコードrecord">レコード（record）</h4>
 <p>データベースに保存される 1 件分のデータ。表計算ソフトでいう「1 行」にあたる。</p>
-<p>BioLog では「1 人分・1 日分の健康記録」が 1 レコード。 <code>health_records</code> という名前のテーブル（表）に保存される。 同じ人・同じ日付のレコードは必ず 1 件だけになるよう設計されている。</p>
-<h4 id="user_idself--father--mother">user_id（self / father / mother）</h4>
-<p>どの家族メンバーの記録かを表す識別子。BioLog では <code>self</code>（自分）・<code>father</code>（父）・ <code>mother</code>（母）の 3 種類に固定されており、利用者が自由に追加することは想定していない。 画面上では「自分 / 父 / 母」と表示される。</p>
+<p>BioLog では「1 人分・1 日分の健康記録」が 1 レコード。
+<code>health_records</code> という名前のテーブル（表）に保存される。
+同じ人・同じ日付のレコードは必ず 1 件だけになるよう設計されている。</p>
+<h4 id="user_idself-father-mother">user_id（self / father / mother）</h4>
+<p>どの家族メンバーの記録かを表す識別子。BioLog では <code>self</code>（自分）・<code>father</code>（父）・
+<code>mother</code>（母）の 3 種類に固定されており、利用者が自由に追加することは想定していない。
+画面上では「自分 / 父 / 母」と表示される。</p>
 <h4 id="単一-writer-モデル">単一 Writer モデル</h4>
-<p>データベースへ<strong>書き込む処理を 1 か所（1 本の処理の流れ）だけに絞る</strong>設計のこと。 Writer は「書き込む人」の意味。</p>
+<p>データベースへ<strong>書き込む処理を 1 か所（1 本の処理の流れ）だけに絞る</strong>設計のこと。
+Writer は「書き込む人」の意味。</p>
 <p>BioLog では、登録・修正・削除の要求が同時に来ても、必ず次の順番で 1 件ずつ処理される。</p>
-<pre><code>HTTP Request → FastAPI → Queue → Worker (1 スレッド) → db_manager → SQLite</code></pre>
-<p>複数の処理が同時に書き込もうとして起きる <code>database is locked</code> エラーを、 仕組みとして発生させないための設計。読み取り（一覧表示やグラフ）はこの流れを通らず、 <code>biocore</code> から直接読み出す。</p>
+<pre><code>HTTP Request → FastAPI → Queue → Worker (1 スレッド) → db_manager → SQLite
+</code></pre>
+<p>複数の処理が同時に書き込もうとして起きる <code>database is locked</code> エラーを、
+仕組みとして発生させないための設計。読み取り（一覧表示やグラフ）はこの流れを通らず、
+<code>biocore</code> から直接読み出す。</p>
 <h4 id="queueキュー待ち行列">Queue（キュー／待ち行列）</h4>
 <p>先に入れたものから順に取り出される、順番待ちの入れ物。レジの行列と同じ考え方。</p>
-<p>BioLog では、FastAPI が受け取った書き込み要求をいったん Queue に入れ、 Worker が 1 件ずつ取り出して処理する。これにより書き込みの順序が保証される。 Queue が満杯（上限 100 件）のときは、待たせ続けずに「混雑中」を意味するエラー（503）を返す。 Roadmap にある <code>queue.Empty</code> は、待ち時間内に応答が取り出せなかったことを表す Python 側の合図で、これを 504 として返す案が未着手タスクとして挙がっている。</p>
+<p>BioLog では、FastAPI が受け取った書き込み要求をいったん Queue に入れ、
+Worker が 1 件ずつ取り出して処理する。これにより書き込みの順序が保証される。
+Queue が満杯（上限 100 件）のときは、待たせ続けずに「混雑中」を意味するエラー（503）を返す。
+Roadmap にある <code>queue.Empty</code> は、待ち時間内に応答が取り出せなかったことを表す
+Python 側の合図で、これを 504 として返す案が未着手タスクとして挙がっている。</p>
 <h4 id="workerワーカー">Worker（ワーカー）</h4>
-<p>裏側で作業を担当する処理。BioLog の Worker は 1 本だけ動いていて、 Queue から書き込み要求を 1 件ずつ取り出し、SQLite への追加・更新・削除を実行する。</p>
-<p>1 件の処理が失敗しても Worker 全体が止まらないよう、要求ごとにエラーを封じ込めている。 <code>database is locked</code> が出たときだけ、待ち時間を倍にしながら最大 5 回まで再試行する。</p>
+<p>裏側で作業を担当する処理。BioLog の Worker は 1 本だけ動いていて、
+Queue から書き込み要求を 1 件ずつ取り出し、SQLite への追加・更新・削除を実行する。</p>
+<p>1 件の処理が失敗しても Worker 全体が止まらないよう、要求ごとにエラーを封じ込めている。
+<code>database is locked</code> が出たときだけ、待ち時間を倍にしながら最大 5 回まで再試行する。</p>
 <h4 id="スレッドthread">スレッド（thread）</h4>
-<p>1 つのプログラムの中で並行して動く処理の単位。複数のスレッドがあれば複数の作業を 同時進行できるが、その分だけ競合も起きやすくなる。</p>
+<p>1 つのプログラムの中で並行して動く処理の単位。複数のスレッドがあれば複数の作業を
+同時進行できるが、その分だけ競合も起きやすくなる。</p>
 <p>BioLog の Worker は <strong>意図的に 1 スレッドだけ</strong>にしてある（→ 単一 Writer モデル）。</p>
 <h4 id="db_manager">db_manager</h4>
-<p>データベースへの接続を開き、トランザクションを開始し、 終わったら確定（commit）または取り消し（rollback）して接続を閉じる役割を持つ部品。 書き込み処理は必ずここを通る。</p>
+<p>データベースへの接続を開き、トランザクションを開始し、
+終わったら確定（commit）または取り消し（rollback）して接続を閉じる役割を持つ部品。
+書き込み処理は必ずここを通る。</p>
 <h4 id="biocore">biocore</h4>
-<p>データベースからの<strong>読み取り専用</strong>の部品。一覧・グラフ・最新値の取得など、 <code>SELECT</code> にあたる処理だけを担当する。書き込みは行わない。</p>
+<p>データベースからの<strong>読み取り専用</strong>の部品。一覧・グラフ・最新値の取得など、
+<code>SELECT</code> にあたる処理だけを担当する。書き込みは行わない。</p>
 <h4 id="eventual-consistency結果整合性">Eventual Consistency（結果整合性）</h4>
 <p>「今すぐ完全に一致していなくても、しばらくすれば一致する」という考え方の整合性モデル。</p>
-<p>BioLog では、書き込みを Queue 経由で処理し、画面側も約 10 秒ごとに読み直す設計のため、 登録してから画面へ反映されるまで数秒かかることがある。 即座の反映が必須の用途には向かない、と README で明示しているのはこのため。</p>
+<p>BioLog では、書き込みを Queue 経由で処理し、画面側も約 10 秒ごとに読み直す設計のため、
+登録してから画面へ反映されるまで数秒かかることがある。
+即座の反映が必須の用途には向かない、と README で明示しているのはこのため。</p>
 <h4 id="冪等性べきとうせいidempotency">冪等性（べきとうせい／idempotency）</h4>
-<p><strong>同じ操作を何回繰り返しても、結果が 1 回だけ実行したときと変わらない</strong>という性質。 通信エラーで再送されたり、ボタンを二重に押されたりしても壊れないようにするための考え方。</p>
+<p><strong>同じ操作を何回繰り返しても、結果が 1 回だけ実行したときと変わらない</strong>という性質。
+通信エラーで再送されたり、ボタンを二重に押されたりしても壊れないようにするための考え方。</p>
 <p>BioLog では次項の <code>request_id</code> を使ってこれを実現している。</p>
 <h4 id="request_id">request_id</h4>
 <p>1 回の書き込み要求を識別するための ID。登録のたびに新しい値が作られ、リクエストに含まれる。</p>
-<p>データベース側で「同じ <code>request_id</code> は 1 件しか保存できない」という制約 （→ UNIQUE 制約）を持たせてあるため、同じ要求が二重に届いても 2 件目の保存は失敗する。 BioLog はこの失敗をエラーにせず、<strong>すでに保存済みのレコードの ID を返して成功として扱う</strong>。 これにより、二重送信されても記録が二重に増えない（→ 冪等性）。</p>
+<p>データベース側で「同じ <code>request_id</code> は 1 件しか保存できない」という制約
+（→ UNIQUE 制約）を持たせてあるため、同じ要求が二重に届いても 2 件目の保存は失敗する。
+BioLog はこの失敗をエラーにせず、<strong>すでに保存済みのレコードの ID を返して成功として扱う</strong>。
+これにより、二重送信されても記録が二重に増えない（→ 冪等性）。</p>
 <h4 id="migrationマイグレーションmigration-runner">migration（マイグレーション）／migration runner</h4>
-<p>データベースの表の構造（テーブルや列）を、決められた手順で作成・変更する仕組み。 「移行」の意味。</p>
-<p>BioLog では API コンテナの起動時に <code>entrypoint.sh</code> が migration runner を自動実行し、 <code>health_records</code> テーブルが無ければ作成、足りない列があれば追加する。 新しい環境でも既存の環境でも同じ手順で動くようになっている。</p>
-<h4 id="migration_lock--staleステイル">migration_lock / stale（ステイル）</h4>
-<p>migration を 2 か所から同時に実行してしまわないための「鍵」を記録する小さなテーブル。 処理が始まると鍵を置き、終わると消す。</p>
-<p><code>stale</code> は「古くなって使われていない」という意味。コンテナを強制終了すると 鍵を消す処理が走らず、鍵だけが残ってしまうことがある。これが README にある 「migration_lock の stale 残存」で、<code>DELETE FROM migration_lock WHERE id = 1</code> で手動解除する。</p>
+<p>データベースの表の構造（テーブルや列）を、決められた手順で作成・変更する仕組み。
+「移行」の意味。</p>
+<p>BioLog では API コンテナの起動時に <code>entrypoint.sh</code> が migration runner を自動実行し、
+<code>health_records</code> テーブルが無ければ作成、足りない列があれば追加する。
+新しい環境でも既存の環境でも同じ手順で動くようになっている。</p>
+<h4 id="migration_lock-staleステイル">migration_lock / stale（ステイル）</h4>
+<p>migration を 2 か所から同時に実行してしまわないための「鍵」を記録する小さなテーブル。
+処理が始まると鍵を置き、終わると消す。</p>
+<p><code>stale</code> は「古くなって使われていない」という意味。コンテナを強制終了すると
+鍵を消す処理が走らず、鍵だけが残ってしまうことがある。これが README にある
+「migration_lock の stale 残存」で、<code>DELETE FROM migration_lock WHERE id = 1</code> で手動解除する。</p>
 <h4 id="entrypointsh">entrypoint.sh</h4>
-<p>コンテナが起動したときに最初に実行されるスクリプト（自動実行される手順書）。 BioLog の API コンテナでは、migration を実行してから API 本体を起動する役割を持つ。</p>
+<p>コンテナが起動したときに最初に実行されるスクリプト（自動実行される手順書）。
+BioLog の API コンテナでは、migration を実行してから API 本体を起動する役割を持つ。</p>
 <h4 id="マルチテナント">マルチテナント</h4>
 <p>1 つのシステムを、互いに無関係な複数の利用者・組織で共用する方式。</p>
-<p>BioLog は <code>self</code> / <code>father</code> / <code>mother</code> の 3 つに固定された家族用アプリであり、 不特定多数が同じシステムを共有する使い方は想定していない。</p>
+<p>BioLog は <code>self</code> / <code>father</code> / <code>mother</code> の 3 つに固定された家族用アプリであり、
+不特定多数が同じシステムを共有する使い方は想定していない。</p>
 <h4 id="インスタンス">インスタンス</h4>
-<p>「実際に動いている 1 つ分」のこと。同じアプリを 2 つのブラウザタブで開けば、 Streamlit のインスタンスも 2 つ動いていることになる。</p>
-<p>BioLog では各インスタンスが別々に読み取りキャッシュを持つため、 片方のタブで編集しても、もう片方へすぐには反映されない可能性がある。</p>
-<hr>
+<p>「実際に動いている 1 つ分」のこと。同じアプリを 2 つのブラウザタブで開けば、
+Streamlit のインスタンスも 2 つ動いていることになる。</p>
+<p>BioLog では各インスタンスが別々に読み取りキャッシュを持つため、
+片方のタブで編集しても、もう片方へすぐには反映されない可能性がある。</p>
+<hr />
 <h3 id="web・api・ネットワーク">Web・API・ネットワーク</h3>
 <h4 id="apiapplication-programming-interface">API（Application Programming Interface）</h4>
 <p>ソフトウェア同士が情報や機能をやり取りするための窓口と、その取り決めのこと。</p>
-<p>BioLog では、画面を担当する Streamlit が直接 SQLite を操作するのではなく、 FastAPI で作られた API へ HTTP で要求を送り、API 側が登録・取得・修正・削除を行う。 こうすることで「画面表示の担当」と「データ処理の担当」を分離できる。</p>
+<p>BioLog では、画面を担当する Streamlit が直接 SQLite を操作するのではなく、
+FastAPI で作られた API へ HTTP で要求を送り、API 側が登録・取得・修正・削除を行う。
+こうすることで「画面表示の担当」と「データ処理の担当」を分離できる。</p>
 <h4 id="httphypertext-transfer-protocol">HTTP（HyperText Transfer Protocol）</h4>
-<p>ブラウザとサーバが情報をやり取りするときの共通のルール（通信規約）。 <code>http://localhost:8501</code> のように、アドレスの先頭に付いているのがこれ。</p>
+<p>ブラウザとサーバが情報をやり取りするときの共通のルール（通信規約）。
+<code>http://localhost:8501</code> のように、アドレスの先頭に付いているのがこれ。</p>
 <p>BioLog では Streamlit → FastAPI の呼び出しにも HTTP を使っている。</p>
-<h4 id="get--post--put--delete">GET / POST / PUT / DELETE</h4>
+<h4 id="get-post-put-delete">GET / POST / PUT / DELETE</h4>
 <p>HTTP で「何をしたいか」を表す動詞。BioLog では次のように使い分けている。</p>
-<div class="table-wrap"><table><thead><tr><th scope="col">動詞</th><th scope="col">意味</th><th scope="col">BioLog での用途</th></tr></thead><tbody><tr><td>GET</td><td>取得する</td><td>一覧・グラフ・1 件表示・ヘルスチェック</td></tr><tr><td>POST</td><td>新規に送る</td><td>新規登録（同じ人・同じ日付なら既存レコードを更新）</td></tr><tr><td>PUT</td><td>置き換える</td><td>既存レコードの修正</td></tr><tr><td>DELETE</td><td>削除する</td><td>レコードの削除</td></tr></tbody></table></div>
-<p>GET は読み取りなので <code>biocore</code> が直接処理し、POST / PUT / DELETE は Queue と Worker を経由する。</p>
+<table>
+<thead>
+<tr>
+  <th>動詞</th>
+  <th>意味</th>
+  <th>BioLog での用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>GET</td>
+  <td>取得する</td>
+  <td>一覧・グラフ・1 件表示・ヘルスチェック</td>
+</tr>
+<tr>
+  <td>POST</td>
+  <td>新規に送る</td>
+  <td>新規登録（同じ人・同じ日付なら既存レコードを更新）</td>
+</tr>
+<tr>
+  <td>PUT</td>
+  <td>置き換える</td>
+  <td>既存レコードの修正</td>
+</tr>
+<tr>
+  <td>DELETE</td>
+  <td>削除する</td>
+  <td>レコードの削除</td>
+</tr>
+</tbody>
+</table>
+<p>GET は読み取りなので <code>biocore</code> が直接処理し、POST / PUT / DELETE は
+Queue と Worker を経由する。</p>
 <h4 id="jsonjavascript-object-notation">JSON（JavaScript Object Notation）</h4>
-<p>データを <code>{&quot;status&quot;:&quot;ok&quot;,&quot;db&quot;:&quot;/data/biolog.db&quot;}</code> のように、 名前と値の組で表現する書式。人が読めて、プログラムでも扱いやすい。</p>
-<p>BioLog の API はリクエストもレスポンスも JSON でやり取りする。 README のヘルスチェック例で表示されている文字列がこれ。</p>
-<h4 id="ステータスコード500--503--504-など">ステータスコード（500 / 503 / 504 など）</h4>
-<p>HTTP の応答に付く 3 桁の数字で、処理結果の種類を表す。200 番台は成功、 400 番台は要求側の誤り、500 番台はサーバ側の問題を意味する。</p>
-<p>BioLog では、Worker が 30 秒以内に応答しない場合に「サーバが今は処理できない」を 意味する <strong>503</strong> を返す（原因不明の 500 を返さない）。 Roadmap にある <strong>504 Gateway Timeout</strong> は「待ち時間切れ」を表すコード。</p>
-<h4 id="localhost--127001">localhost / 127.0.0.1</h4>
-<p>どちらも「今使っているこのコンピュータ自身」を指すアドレス。 外部のネットワークからは到達できない。</p>
-<p>BioLog は標準で API（8766）と画面（8501）を <code>127.0.0.1</code> にだけ公開するため、 <strong>同じ PC のブラウザからしか開けない</strong>。これが README のセキュリティ上の前提になっている。</p>
+<p>データを <code>{&quot;status&quot;:&quot;ok&quot;,&quot;db&quot;:&quot;/data/biolog.db&quot;}</code> のように、
+名前と値の組で表現する書式。人が読めて、プログラムでも扱いやすい。</p>
+<p>BioLog の API はリクエストもレスポンスも JSON でやり取りする。
+README のヘルスチェック例で表示されている文字列がこれ。</p>
+<h4 id="ステータスコード500-503-504-など">ステータスコード（500 / 503 / 504 など）</h4>
+<p>HTTP の応答に付く 3 桁の数字で、処理結果の種類を表す。200 番台は成功、
+400 番台は要求側の誤り、500 番台はサーバ側の問題を意味する。</p>
+<p>BioLog では、Worker が 30 秒以内に応答しない場合に「サーバが今は処理できない」を
+意味する <strong>503</strong> を返す（原因不明の 500 を返さない）。
+Roadmap にある <strong>504 Gateway Timeout</strong> は「待ち時間切れ」を表すコード。</p>
+<h4 id="localhost-127001">localhost / 127.0.0.1</h4>
+<p>どちらも「今使っているこのコンピュータ自身」を指すアドレス。
+外部のネットワークからは到達できない。</p>
+<p>BioLog は標準で API（8766）と画面（8501）を <code>127.0.0.1</code> にだけ公開するため、
+<strong>同じ PC のブラウザからしか開けない</strong>。これが README のセキュリティ上の前提になっている。</p>
 <h4 id="ポートport">ポート（port）</h4>
-<p>1 台のコンピュータの中で、通信の宛先を区別するための番号。 同じアドレスでも番号が違えば別のプログラムにつながる。</p>
-<p>BioLog は画面に <strong>8501</strong>、API に <strong>8766</strong> を使う。 他のソフトが同じ番号を使っていると「ポート競合」で起動できないため、 その場合は <code>docker-compose.override.yml</code> で番号を変更する。</p>
+<p>1 台のコンピュータの中で、通信の宛先を区別するための番号。
+同じアドレスでも番号が違えば別のプログラムにつながる。</p>
+<p>BioLog は画面に <strong>8501</strong>、API に <strong>8766</strong> を使う。
+他のソフトが同じ番号を使っていると「ポート競合」で起動できないため、
+その場合は <code>docker-compose.override.yml</code> で番号を変更する。</p>
 <h4 id="完全リロードctrl--f5">完全リロード（Ctrl + F5）</h4>
-<p>ブラウザが手元に保存している一時ファイルを無視して、 ページを最初から読み込み直す操作。通常の再読み込みでは古い内容が 表示され続けることがあるため、それを避けたいときに使う。</p>
+<p>ブラウザが手元に保存している一時ファイルを無視して、
+ページを最初から読み込み直す操作。通常の再読み込みでは古い内容が
+表示され続けることがあるため、それを避けたいときに使う。</p>
 <p>BioLog で「表示が古い」ときの対処として README が挙げている手段のひとつ。</p>
 <h4 id="lanlocal-area-network">LAN（Local Area Network）</h4>
 <p>家庭内や社内など、限られた範囲をつなぐネットワーク。</p>
-<p>BioLog は標準では LAN 内の別端末からもアクセスできない設定になっている。 別端末から使う場合は設定変更が必要で、その際もファイアウォール等で 接続元を制限することが README で求められている。</p>
+<p>BioLog は標準では LAN 内の別端末からもアクセスできない設定になっている。
+別端末から使う場合は設定変更が必要で、その際もファイアウォール等で
+接続元を制限することが README で求められている。</p>
 <h4 id="curlカール">curl（カール）</h4>
-<p>コマンドライン（黒い画面）から HTTP 要求を送るためのツール。 ブラウザを開かずに API の応答を確認できる。</p>
-<p>README では <code>curl http://localhost:8766/api/health/health</code> で API が正常かどうかを確認する例として使われている。</p>
+<p>コマンドライン（黒い画面）から HTTP 要求を送るためのツール。
+ブラウザを開かずに API の応答を確認できる。</p>
+<p>README では <code>curl http://localhost:8766/api/health/health</code> で
+API が正常かどうかを確認する例として使われている。</p>
 <h4 id="ヘルスチェックhealth-check">ヘルスチェック（health check）</h4>
 <p>サービスが正常に動いているかを定期的に確認する仕組み。</p>
-<p>BioLog の API のヘルスチェックは、Worker が生きているか・データベースを読めるか（読取疎通）・ Queue がどれくらい詰まっているかを返す。 Docker Compose 側の <code>healthcheck</code> 設定でも 30 秒ごとに確認しているが、 <strong>状態の見える化が目的</strong>であり、<code>unhealthy</code> になってもコンテナは自動再起動されない。</p>
-<h4 id="frontend--backendフロントエンド--バックエンド">frontend / backend（フロントエンド / バックエンド）</h4>
-<ul><li><strong>frontend</strong>：利用者が直接見る・操作する側。BioLog では Streamlit の画面。</li><li><strong>backend</strong>：画面の裏でデータを処理・保存する側。BioLog では FastAPI と SQLite。</li></ul>
-<p>README の <code>Cannot load Streamlit frontend code</code> は、 ブラウザが Streamlit の画面用ファイルを読み込めなかったときに出るメッセージ。</p>
+<p>BioLog の API のヘルスチェックは、Worker が生きているか・データベースを読めるか（読取疎通）・
+Queue がどれくらい詰まっているかを返す。
+Docker Compose 側の <code>healthcheck</code> 設定でも 30 秒ごとに確認しているが、
+<strong>状態の見える化が目的</strong>であり、<code>unhealthy</code> になってもコンテナは自動再起動されない。</p>
+<h4 id="frontend-backendフロントエンド-バックエンド">frontend / backend（フロントエンド / バックエンド）</h4>
+<ul>
+<li><strong>frontend</strong>：利用者が直接見る・操作する側。BioLog では Streamlit の画面。</li>
+<li><strong>backend</strong>：画面の裏でデータを処理・保存する側。BioLog では FastAPI と SQLite。</li>
+</ul>
+<p>README の <code>Cannot load Streamlit frontend code</code> は、
+ブラウザが Streamlit の画面用ファイルを読み込めなかったときに出るメッセージ。</p>
 <h4 id="uiuser-interface">UI（User Interface）</h4>
-<p>利用者とソフトの接点、つまり操作画面のこと。BioLog の UI は Streamlit が担当し、 グラフ・一覧・新規登録・修正削除の 4 つのタブで構成されている。</p>
+<p>利用者とソフトの接点、つまり操作画面のこと。BioLog の UI は Streamlit が担当し、
+グラフ・一覧・新規登録・修正削除の 4 つのタブで構成されている。</p>
 <h4 id="reverse-proxyリバースプロキシ認証層">Reverse proxy（リバースプロキシ）／認証層</h4>
-<p>利用者とアプリの間に立ち、通信を中継する仕組み。中継の途中で「誰が使っているか」を 確認したり（認証層）、暗号化を担当したりできる。</p>
-<p>README では、もしクラウド上で運用するなら BioLog を直接公開せず、 Cloudflare Access や Tailscale などの認証機能を必ず前段に置くよう求めている。 BioLog 自体に認証機能は無いため。</p>
+<p>利用者とアプリの間に立ち、通信を中継する仕組み。中継の途中で「誰が使っているか」を
+確認したり（認証層）、暗号化を担当したりできる。</p>
+<p>README では、もしクラウド上で運用するなら BioLog を直接公開せず、
+Cloudflare Access や Tailscale などの認証機能を必ず前段に置くよう求めている。
+BioLog 自体に認証機能は無いため。</p>
 <h4 id="vmvirtual-machine仮想マシン">VM（Virtual Machine／仮想マシン）</h4>
-<p>1 台の物理的なコンピュータの中に作られた、仮想のコンピュータ。 クラウド事業者が貸し出すサーバの多くがこれにあたる。</p>
-<hr>
+<p>1 台の物理的なコンピュータの中に作られた、仮想のコンピュータ。
+クラウド事業者が貸し出すサーバの多くがこれにあたる。</p>
+<hr />
 <h3 id="python・streamlit">Python・Streamlit</h3>
 <h4 id="pythonパイソン">Python（パイソン）</h4>
-<p>BioLog 全体で使っているプログラミング言語。README のバッジにある「Python 3.11」は、 使用しているバージョンを示す。</p>
+<p>BioLog 全体で使っているプログラミング言語。README のバッジにある「Python 3.11」は、
+使用しているバージョンを示す。</p>
 <h4 id="streamlitストリームリット">Streamlit（ストリームリット）</h4>
-<p>Python のコードだけで Web 画面を作れるライブラリ。 HTML や JavaScript を書かずに、入力欄・表・グラフを並べられる。</p>
-<p>BioLog では画面全体（グラフ / 一覧 / 新規登録 / 修正・削除）を Streamlit で作り、 ポート 8501 で表示している。</p>
+<p>Python のコードだけで Web 画面を作れるライブラリ。
+HTML や JavaScript を書かずに、入力欄・表・グラフを並べられる。</p>
+<p>BioLog では画面全体（グラフ / 一覧 / 新規登録 / 修正・削除）を Streamlit で作り、
+ポート 8501 で表示している。</p>
 <h4 id="fastapiファストエーピーアイ">FastAPI（ファストエーピーアイ）</h4>
-<p>Python で API を作るためのライブラリ。受け取ったデータの形式チェックを 自動で行える点が特徴。</p>
+<p>Python で API を作るためのライブラリ。受け取ったデータの形式チェックを
+自動で行える点が特徴。</p>
 <p>BioLog ではポート 8766 で動き、登録・取得・修正・削除の窓口を提供する。</p>
 <h4 id="pydanticパイダンティック">Pydantic（パイダンティック）</h4>
-<p>受け取ったデータが期待どおりの形か（数値か、文字数は多すぎないか、 値が許容範囲内かなど）を検証するための Python ライブラリ。FastAPI が内部で使っている。</p>
-<p>BioLog では体温 34〜42 ℃、脈拍 30〜200 bpm といった範囲検証をこの層で行う。 README の「CHECK 制約未実装：DB レベル制約は無し、Pydantic 層のみで範囲検証している」は、 <strong>データベース自体には範囲の制限を設けておらず、この Python 側の検証に頼っている</strong> という意味。</p>
+<p>受け取ったデータが期待どおりの形か（数値か、文字数は多すぎないか、
+値が許容範囲内かなど）を検証するための Python ライブラリ。FastAPI が内部で使っている。</p>
+<p>BioLog では体温 34〜42 ℃、脈拍 30〜200 bpm といった範囲検証をこの層で行う。
+README の「CHECK 制約未実装：DB レベル制約は無し、Pydantic 層のみで範囲検証している」は、
+<strong>データベース自体には範囲の制限を設けておらず、この Python 側の検証に頼っている</strong>
+という意味。</p>
 <h4 id="バリデーションvalidationバリデータ">バリデーション（validation）／バリデータ</h4>
 <p>入力された値が正しい形式・正しい範囲かどうかを検査すること。検査を行う部品がバリデータ。</p>
-<p>BioLog では <code>schemas.py</code> が担当する。Roadmap の 「<code>schemas.py</code> の date に <code>YYYY-MM-DD</code> 形式バリデータ追加」は、 日付の書式チェックを追加する未着手タスクを指す。</p>
+<p>BioLog では <code>schemas.py</code> が担当する。Roadmap の
+「<code>schemas.py</code> の date に <code>YYYY-MM-DD</code> 形式バリデータ追加」は、
+日付の書式チェックを追加する未着手タスクを指す。</p>
 <h4 id="preprocesspy前処理">preprocess.py（前処理）</h4>
 <p>API が受け取ったデータを、検証に回す前に整える部品。「前処理」の意味。</p>
-<p>BioLog では、<code>&quot;120/80&quot;</code> のような血圧の文字列を上下に分解したり、 <code>&quot;1400.0&quot;</code> を <code>1400</code> に直したり、<code>date</code> や <code>request_id</code> が空のときに補ったりする。</p>
-<h4 id="キャッシュcachestcache_data--invalidate無効化">キャッシュ（cache）／<code>@st.cache_data</code> / invalidate（無効化）</h4>
+<p>BioLog では、<code>&quot;120/80&quot;</code> のような血圧の文字列を上下に分解したり、
+<code>&quot;1400.0&quot;</code> を <code>1400</code> に直したり、<code>date</code> や <code>request_id</code> が空のときに補ったりする。</p>
+<h4 id="キャッシュcachestcache_data-invalidate無効化">キャッシュ（cache）／<code>@st.cache_data</code> / invalidate（無効化）</h4>
 <p>一度取得した結果を一時的に覚えておき、次回は再取得せずに使い回す仕組み。表示が速くなる。</p>
-<p>BioLog では読み取り結果を <code>@st.cache_data</code> で数秒間キャッシュする。 ただし登録・修正・削除に成功した直後は古い内容を見せないよう、 <code>fetch_latest.clear()</code> / <code>fetch_range_data.clear()</code> を呼んでキャッシュを <strong>捨てる（invalidate＝無効化する）</strong>。README の「per-function に明示 invalidate」は、 関数ごとに個別に捨てる、という意味。 あわせて「version 機構」も使っている。これはキャッシュの目印に世代番号 （<code>data_version</code>）を混ぜておき、書き込みのたびに番号を 1 つ進める方式。 <code>.clear()</code> がプロセス全体のキャッシュを捨てるのに対し、こちらは その利用者のセッションだけを新しい世代へ移すため、直後に別のセッションが 古い値を詰め直しても影響を受けない。番号の初期値には時刻を使う（→ UTC / JST）。</p>
+<p>BioLog では読み取り結果を <code>@st.cache_data</code> で数秒間キャッシュする。
+ただし登録・修正・削除に成功した直後は古い内容を見せないよう、
+<code>fetch_latest.clear()</code> / <code>fetch_range_data.clear()</code> を呼んでキャッシュを
+<strong>捨てる（invalidate＝無効化する）</strong>。README の「per-function に明示 invalidate」は、
+関数ごとに個別に捨てる、という意味。
+あわせて「version 機構」も使っている。これはキャッシュの目印に世代番号
+（<code>data_version</code>）を混ぜておき、書き込みのたびに番号を 1 つ進める方式。
+<code>.clear()</code> がプロセス全体のキャッシュを捨てるのに対し、こちらは
+その利用者のセッションだけを新しい世代へ移すため、直後に別のセッションが
+古い値を詰め直しても影響を受けない。番号の初期値には時刻を使う（→ UTC / JST）。</p>
 <p>3 つの役割は次のとおり。</p>
-<div class="table-wrap"><table><thead><tr><th scope="col">仕組み</th><th scope="col">役割</th></tr></thead><tbody><tr><td><code>.clear()</code></td><td>書き込み直後に、今あるキャッシュをすべて捨てる</td></tr><tr><td><code>data_version</code></td><td>セッションごとにキャッシュの世代を進め、古い世代を参照しない</td></tr><tr><td><code>ttl=10</code></td><td>万一古い値を取得してしまっても、10 秒で自動的に期限切れにする</td></tr></tbody></table></div>
+<table>
+<thead>
+<tr>
+  <th>仕組み</th>
+  <th>役割</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>.clear()</code></td>
+  <td>書き込み直後に、今あるキャッシュをすべて捨てる</td>
+</tr>
+<tr>
+  <td><code>data_version</code></td>
+  <td>セッションごとにキャッシュの世代を進め、古い世代を参照しない</td>
+</tr>
+<tr>
+  <td><code>ttl=10</code></td>
+  <td>万一古い値を取得してしまっても、10 秒で自動的に期限切れにする</td>
+</tr>
+</tbody>
+</table>
 <h4 id="セッションsessionセッション跨ぎ">セッション（session）／セッション跨ぎ</h4>
 <p>ブラウザでアプリを開いてから閉じるまでの、1 回の利用のまとまり。</p>
-<p>「セッション跨ぎ」は、いったん閉じて開き直した別の利用のこと。 README にある過去の不具合は、開き直したあとに前回の古いキャッシュを 拾ってしまうというものだった（v1.5.5 で解消）。</p>
+<p>「セッション跨ぎ」は、いったん閉じて開き直した別の利用のこと。
+README にある過去の不具合は、開き直したあとに前回の古いキャッシュを
+拾ってしまうというものだった（v1.5.5 で解消）。</p>
 <h4 id="expanderエクスパンダー">expander（エクスパンダー）</h4>
 <p>Streamlit の折りたたみ表示部品。クリックすると隠れていた内容が開く。</p>
-<p>BioLog では、一覧のメモ・食事ログ・行動ログが長くて表に収まらない場合に、 その部分だけ expander で全文を開けるようにしている。</p>
+<p>BioLog では、一覧のメモ・食事ログ・行動ログが長くて表に収まらない場合に、
+その部分だけ expander で全文を開けるようにしている。</p>
 <h4 id="例外exception例外隔離">例外（exception）／例外隔離</h4>
 <p>プログラムの実行中に起きた異常のこと。放置するとプログラムが止まる。</p>
-<p>BioLog では書き込みタスクごとに例外を受け止めて封じ込めており（例外隔離）、 1 件の異常で単一 Writer スレッド全体が停止しないようにしている。</p>
+<p>BioLog では書き込みタスクごとに例外を受け止めて封じ込めており（例外隔離）、
+1 件の異常で単一 Writer スレッド全体が停止しないようにしている。</p>
 <h4 id="finally"><code>finally</code></h4>
 <p>Python で「異常が起きても、必ず最後に実行する」処理を書くための構文。</p>
-<p>README の「コンテナ強制終了で finally が走らない」は、 コンテナを強制的に落とすと、この後始末（migration_lock の削除）が 実行されないまま終わってしまう、という意味。</p>
+<p>README の「コンテナ強制終了で finally が走らない」は、
+コンテナを強制的に落とすと、この後始末（migration_lock の削除）が
+実行されないまま終わってしまう、という意味。</p>
 <h4 id="終了コードexit-0">終了コード（exit 0）</h4>
-<p>プログラムが終わるときに残す数値。慣例として <strong>0 は正常終了</strong>、 0 以外は異常終了を表し、後続の処理はこれを見て続行するか判断する。</p>
-<p>README の「runner.py の lock 競合時 exit 0 仕様」は、 migration の鍵が残っていて何も実行できなかった場合でも runner が「正常終了（0）」を返してしまうため、 表の構造が整っていないまま API が起動してしまう可能性がある、という指摘。</p>
+<p>プログラムが終わるときに残す数値。慣例として <strong>0 は正常終了</strong>、
+0 以外は異常終了を表し、後続の処理はこれを見て続行するか判断する。</p>
+<p>README の「runner.py の lock 競合時 exit 0 仕様」は、
+migration の鍵が残っていて何も実行できなかった場合でも
+runner が「正常終了（0）」を返してしまうため、
+表の構造が整っていないまま API が起動してしまう可能性がある、という指摘。</p>
 <h4 id="syntaxerror構文エラー">SyntaxError（構文エラー）</h4>
 <p>プログラムの書き方が文法的に間違っているときのエラー。実行前の段階で失敗する。</p>
 <p>README では、Streamlit が起動しない場合の原因としてまず疑うべきものとして挙げている。</p>
-<h4 id="matplotlib--pandas--requests">matplotlib / pandas / requests</h4>
+<h4 id="matplotlib-pandas-requests">matplotlib / pandas / requests</h4>
 <p>BioLog が利用している Python のライブラリ。</p>
-<ul><li><strong>matplotlib</strong>：グラフを描画する。BioLog の時系列グラフに使用。</li><li><strong>pandas</strong>：表形式のデータを扱う。一覧表示や CSV 出力に使用。</li><li><strong>requests</strong>：HTTP 通信を行う。Streamlit から FastAPI を呼び出すときに使用。</li></ul>
+<ul>
+<li><strong>matplotlib</strong>：グラフを描画する。BioLog の時系列グラフに使用。</li>
+<li><strong>pandas</strong>：表形式のデータを扱う。一覧表示や CSV 出力に使用。</li>
+<li><strong>requests</strong>：HTTP 通信を行う。Streamlit から FastAPI を呼び出すときに使用。</li>
+</ul>
 <h4 id="依存パッケージ推移依存constraintstxtバージョン固定">依存パッケージ／推移依存／constraints.txt（バージョン固定）</h4>
-<ul><li><strong>依存パッケージ</strong>：アプリが動くために必要な、外部で作られた部品。</li><li><strong>推移依存</strong>：依存パッケージがさらに内部で必要としている部品。間接的な依存。</li><li><strong>バージョン固定</strong>：使う版を明示的に指定し、勝手に新しい版へ変わらないようにすること。</li></ul>
-<p>BioLog では <code>constraints.txt</code> に、2026-07-27 時点で実際に動いていたイメージから 採取した推移依存の版まで書き出して固定している。 これにより、再ビルドしても同じ組み合わせで動くことを保証している。</p>
+<ul>
+<li><strong>依存パッケージ</strong>：アプリが動くために必要な、外部で作られた部品。</li>
+<li><strong>推移依存</strong>：依存パッケージがさらに内部で必要としている部品。間接的な依存。</li>
+<li><strong>バージョン固定</strong>：使う版を明示的に指定し、勝手に新しい版へ変わらないようにすること。</li>
+</ul>
+<p>BioLog では <code>constraints.txt</code> に、2026-07-27 時点で実際に動いていたイメージから
+採取した推移依存の版まで書き出して固定している。
+これにより、再ビルドしても同じ組み合わせで動くことを保証している。</p>
 <h4 id="利用統計テレメトリ">利用統計（テレメトリ）</h4>
-<p>ソフトが「どう使われたか」の情報を、開発元へ自動送信する仕組み。 Streamlit にはこの機能が標準で備わっている。</p>
-<p>BioLog では設定ファイルでこれを <strong>無効化</strong>しており、 利用状況が外部へ送られないようにしている。</p>
-<h4 id="gpu--cuda--ml-フレームワーク">GPU / CUDA / ML フレームワーク</h4>
-<ul><li><strong>GPU</strong>：画像処理や機械学習の計算を高速に行う専用装置。</li><li><strong>CUDA</strong>：その GPU を計算に使うための開発基盤。</li><li><strong>ML フレームワーク</strong>：機械学習（Machine Learning）のためのライブラリ群。</li></ul>
-<p>いずれも BioLog では <strong>使用していない</strong>。README がこれを明記しているのは、 インストールが軽く済むことを示すため。</p>
-<hr>
+<p>ソフトが「どう使われたか」の情報を、開発元へ自動送信する仕組み。
+Streamlit にはこの機能が標準で備わっている。</p>
+<p>BioLog では設定ファイルでこれを <strong>無効化</strong>しており、
+利用状況が外部へ送られないようにしている。</p>
+<h4 id="gpu-cuda-ml-フレームワーク">GPU / CUDA / ML フレームワーク</h4>
+<ul>
+<li><strong>GPU</strong>：画像処理や機械学習の計算を高速に行う専用装置。</li>
+<li><strong>CUDA</strong>：その GPU を計算に使うための開発基盤。</li>
+<li><strong>ML フレームワーク</strong>：機械学習（Machine Learning）のためのライブラリ群。</li>
+</ul>
+<p>いずれも BioLog では <strong>使用していない</strong>。README がこれを明記しているのは、
+インストールが軽く済むことを示すため。</p>
+<hr />
 <h3 id="データベース・sqlite">データベース・SQLite</h3>
 <h4 id="データベースdb">データベース（DB）</h4>
 <p>データを整理して保存し、後から検索・更新できるようにした仕組み。</p>
 <h4 id="sqlstructured-query-language">SQL（Structured Query Language）</h4>
-<p>データベースに対して「取り出す」「追加する」「変える」「消す」と指示するための言語。 README に出てくる <code>DELETE FROM migration_lock WHERE id = 1</code> や <code>SELECT *</code> はこの言語の文。</p>
+<p>データベースに対して「取り出す」「追加する」「変える」「消す」と指示するための言語。
+README に出てくる <code>DELETE FROM migration_lock WHERE id = 1</code> や <code>SELECT *</code> はこの言語の文。</p>
 <h4 id="sqliteエスキューライト">SQLite（エスキューライト）</h4>
-<p><strong>ファイル 1 つがそのままデータベースになる</strong>タイプの小規模データベース。 別途データベース専用のサーバを立てる必要がない。</p>
-<p>BioLog では <code>./data/biolog.db</code> というファイル 1 つに全記録を保存する。 バックアップはこのファイルをコピーするだけで済み、 Docker で起動するコンテナも 2 つ（API と画面）だけで完結する。</p>
+<p><strong>ファイル 1 つがそのままデータベースになる</strong>タイプの小規模データベース。
+別途データベース専用のサーバを立てる必要がない。</p>
+<p>BioLog では <code>./data/biolog.db</code> というファイル 1 つに全記録を保存する。
+バックアップはこのファイルをコピーするだけで済み、
+Docker で起動するコンテナも 2 つ（API と画面）だけで完結する。</p>
 <h4 id="テーブルカラムスキーマ">テーブル／カラム／スキーマ</h4>
-<ul><li><strong>テーブル（表）</strong>：同じ形のデータをまとめて入れる箱。BioLog では <code>health_records</code>。</li><li><strong>カラム（列）</strong>：テーブルの各項目。<code>user_id</code>、<code>date</code>、<code>created_at</code> など。</li><li><strong>スキーマ</strong>：テーブルとカラムの構造そのもの。「どんな表で、どんな項目があるか」の定義。</li></ul>
-<p>README の「schema 未整備のまま API が起動する可能性あり」は、 テーブルの構造が作られていない状態で API が動き出す恐れがある、という意味。</p>
-<h4 id="select--insert--update--delete">SELECT / INSERT / UPDATE / DELETE</h4>
+<ul>
+<li><strong>テーブル（表）</strong>：同じ形のデータをまとめて入れる箱。BioLog では <code>health_records</code>。</li>
+<li><strong>カラム（列）</strong>：テーブルの各項目。<code>user_id</code>、<code>date</code>、<code>created_at</code> など。</li>
+<li><strong>スキーマ</strong>：テーブルとカラムの構造そのもの。「どんな表で、どんな項目があるか」の定義。</li>
+</ul>
+<p>README の「schema 未整備のまま API が起動する可能性あり」は、
+テーブルの構造が作られていない状態で API が動き出す恐れがある、という意味。</p>
+<h4 id="select-insert-update-delete">SELECT / INSERT / UPDATE / DELETE</h4>
 <p>SQL の基本操作。BioLog での役割は次のとおり。</p>
-<div class="table-wrap"><table><thead><tr><th scope="col">命令</th><th scope="col">意味</th><th scope="col">BioLog での担当</th></tr></thead><tbody><tr><td>SELECT</td><td>取り出す</td><td><code>biocore</code>（読み取り専用）</td></tr><tr><td>INSERT</td><td>新しい行を追加する</td><td>Worker（新規登録時）</td></tr><tr><td>UPDATE</td><td>既存の行を書き換える</td><td>Worker（修正時、および同じ人・同じ日付の再登録時）</td></tr><tr><td>DELETE</td><td>行を消す</td><td>Worker（削除時）</td></tr></tbody></table></div>
-<p>Roadmap の「<code>SELECT *</code> を明示列指定に置換」は、 「全部の列」を意味する <code>*</code> をやめて必要な列名を書き並べる、という改善案。</p>
-<h4 id="create-table--alter-table--if-not-exists">CREATE TABLE / ALTER TABLE / IF NOT EXISTS</h4>
+<table>
+<thead>
+<tr>
+  <th>命令</th>
+  <th>意味</th>
+  <th>BioLog での担当</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>SELECT</td>
+  <td>取り出す</td>
+  <td><code>biocore</code>（読み取り専用）</td>
+</tr>
+<tr>
+  <td>INSERT</td>
+  <td>新しい行を追加する</td>
+  <td>Worker（新規登録時）</td>
+</tr>
+<tr>
+  <td>UPDATE</td>
+  <td>既存の行を書き換える</td>
+  <td>Worker（修正時、および同じ人・同じ日付の再登録時）</td>
+</tr>
+<tr>
+  <td>DELETE</td>
+  <td>行を消す</td>
+  <td>Worker（削除時）</td>
+</tr>
+</tbody>
+</table>
+<p>Roadmap の「<code>SELECT *</code> を明示列指定に置換」は、
+「全部の列」を意味する <code>*</code> をやめて必要な列名を書き並べる、という改善案。</p>
+<h4 id="create-table-alter-table-if-not-exists">CREATE TABLE / ALTER TABLE / IF NOT EXISTS</h4>
 <p>テーブルの構造そのものを操作する SQL。</p>
-<ul><li><strong>CREATE TABLE</strong>：新しいテーブルを作る。</li><li><strong>ALTER TABLE</strong>：既存のテーブルに列を追加するなど、構造を変更する。</li><li><strong>IF NOT EXISTS</strong>：「まだ無い場合だけ作る」という指定。</li></ul>
-<p>すでにある場合はエラーにせず何もしない。</p>
-<p>BioLog の migration は <code>CREATE TABLE IF NOT EXISTS</code> と <code>ALTER TABLE</code> を併存させてある。 新しい環境では表ごと作られ、すでに動いている環境では足りない列だけが追加されるため、 どちらでも同じ手順で起動できる。</p>
+<ul>
+<li><strong>CREATE TABLE</strong>：新しいテーブルを作る。</li>
+<li><strong>ALTER TABLE</strong>：既存のテーブルに列を追加するなど、構造を変更する。</li>
+<li><strong>IF NOT EXISTS</strong>：「まだ無い場合だけ作る」という指定。
+すでにある場合はエラーにせず何もしない。</li>
+</ul>
+<p>BioLog の migration は <code>CREATE TABLE IF NOT EXISTS</code> と <code>ALTER TABLE</code> を併存させてある。
+新しい環境では表ごと作られ、すでに動いている環境では足りない列だけが追加されるため、
+どちらでも同じ手順で起動できる。</p>
 <h4 id="upsertアップサート">UPSERT（アップサート）</h4>
-<p><strong>UPDATE と INSERT を合わせた造語</strong>。対象が存在しなければ追加（INSERT）し、 すでに存在すれば書き換える（UPDATE）という 1 つの操作。</p>
-<p>BioLog では「1 人につき 1 日 1 件」という決まりを守るために使っている。 <code>UNIQUE(user_id, date)</code> で同じ人・同じ日付が重複しないようにしたうえで、 <code>ON CONFLICT(user_id, date) DO UPDATE</code> を指定することで、 <strong>同じ人・同じ日付で再登録しても新しい行を増やさず、既存の行を更新する</strong>。</p>
-<p>このとき、入力されなかった測定値は既存の値をそのまま残し、 食事ログ・行動ログは既存にない行だけを追記する（同じ内容は重複させない）。</p>
-<h4 id="unique-制約--check-制約">UNIQUE 制約 / CHECK 制約</h4>
+<p><strong>UPDATE と INSERT を合わせた造語</strong>。対象が存在しなければ追加（INSERT）し、
+すでに存在すれば書き換える（UPDATE）という 1 つの操作。</p>
+<p>BioLog では「1 人につき 1 日 1 件」という決まりを守るために使っている。
+<code>UNIQUE(user_id, date)</code> で同じ人・同じ日付が重複しないようにしたうえで、
+<code>ON CONFLICT(user_id, date) DO UPDATE</code> を指定することで、
+<strong>同じ人・同じ日付で再登録しても新しい行を増やさず、既存の行を更新する</strong>。</p>
+<p>このとき、入力されなかった測定値は既存の値をそのまま残し、
+食事ログ・行動ログは既存にない行だけを追記する（同じ内容は重複させない）。</p>
+<h4 id="unique-制約-check-制約">UNIQUE 制約 / CHECK 制約</h4>
 <p>データベース側で設定できる、値のルール。</p>
-<ul><li><strong>UNIQUE</strong>：同じ値が 2 件以上入らないようにする制約。</li></ul>
-<p>BioLog では <code>(user_id, date)</code> の組と <code>request_id</code> に設定されている。</p>
-<ul><li><strong>CHECK</strong>：値が決められた条件を満たすかをデータベース側で検査する制約。</li></ul>
-<p>BioLog では <strong>未実装</strong>で、範囲の検査は Pydantic 層だけで行っている （README の Known Issues に記載のとおり、データベースを直接編集した場合の弱点になる）。</p>
-<h4 id="トランザクション--begin-immediate--commit--rollback">トランザクション / BEGIN IMMEDIATE / commit / rollback</h4>
-<p><strong>一連の書き込みを「全部成功」か「全部なかったこと」のどちらかにまとめる仕組み</strong>。 途中で失敗したまま中途半端に保存される事態を防ぐ。</p>
-<ul><li><strong>BEGIN IMMEDIATE</strong>：トランザクションの開始。BioLog ではこの形式を使い、</li></ul>
-<p>開始時点で書き込み権を確保する。</p>
-<ul><li><strong>commit（コミット）</strong>：ここまでの変更を確定して保存する。</li><li><strong>rollback（ロールバック）</strong>：変更を取り消して開始前の状態へ戻す。</li></ul>
-<p>BioLog では <code>db_manager</code> がこの境界を管理しており、 どこで開始してどこで確定・取り消しをするかが 1 か所に集約されている。</p>
-<h4 id="ロック--database-is-locked--busy-timeout--リトライ">ロック / <code>database is locked</code> / busy timeout / リトライ</h4>
-<ul><li><strong>ロック</strong>：あるプログラムが書き込み中に、他からの書き込みを一時的に締め出す仕組み。</li><li><strong><code>database is locked</code></strong>：締め出されて書き込めなかったときの SQLite のエラー。</li><li><strong>busy timeout</strong>：締め出されている間、どれだけ待つかの上限時間。</li><li><strong>リトライ（再試行）</strong>：失敗した処理をもう一度試すこと。</li></ul>
-<p>BioLog は単一 Writer モデルによってこのエラーを構造的に避けているが、 念のため有限の busy timeout（無限に待たない）と、 <code>database is locked</code> のときだけ最大 5 回の短い再試行を用意している。</p>
-<h4 id="pragma--journal_mode--wal">PRAGMA / journal_mode / WAL</h4>
-<ul><li><strong>PRAGMA</strong>：SQLite の動作設定を切り替えるための特別な命令。</li><li><strong>journal_mode</strong>：書き込み途中の記録をどう残すかの方式。</li><li><strong>WAL（Write-Ahead Logging）</strong>：更新内容を別ファイル（<code>.db-wal</code> / <code>.db-shm</code>）へ</li></ul>
-<p>先に書き出す高速な方式。</p>
-<p>BioLog は <strong>WAL を使わず</strong> <code>PRAGMA journal_mode=DELETE</code> を強制している。 Windows の NTFS 上で Docker のバインドマウント越しに WAL を使うと 入出力エラーを誘発するため。過去に手動で WAL を有効化した名残として <code>.db-wal</code> / <code>.db-shm</code> が残っている場合は、削除してよいと README に記載されている。</p>
+<ul>
+<li><strong>UNIQUE</strong>：同じ値が 2 件以上入らないようにする制約。
+BioLog では <code>(user_id, date)</code> の組と <code>request_id</code> に設定されている。</li>
+<li><strong>CHECK</strong>：値が決められた条件を満たすかをデータベース側で検査する制約。
+BioLog では <strong>未実装</strong>で、範囲の検査は Pydantic 層だけで行っている
+（README の Known Issues に記載のとおり、データベースを直接編集した場合の弱点になる）。</li>
+</ul>
+<h4 id="トランザクション-begin-immediate-commit-rollback">トランザクション / BEGIN IMMEDIATE / commit / rollback</h4>
+<p><strong>一連の書き込みを「全部成功」か「全部なかったこと」のどちらかにまとめる仕組み</strong>。
+途中で失敗したまま中途半端に保存される事態を防ぐ。</p>
+<ul>
+<li><strong>BEGIN IMMEDIATE</strong>：トランザクションの開始。BioLog ではこの形式を使い、
+開始時点で書き込み権を確保する。</li>
+<li><strong>commit（コミット）</strong>：ここまでの変更を確定して保存する。</li>
+<li><strong>rollback（ロールバック）</strong>：変更を取り消して開始前の状態へ戻す。</li>
+</ul>
+<p>BioLog では <code>db_manager</code> がこの境界を管理しており、
+どこで開始してどこで確定・取り消しをするかが 1 か所に集約されている。</p>
+<h4 id="ロック-database-is-locked-busy-timeout-リトライ">ロック / <code>database is locked</code> / busy timeout / リトライ</h4>
+<ul>
+<li><strong>ロック</strong>：あるプログラムが書き込み中に、他からの書き込みを一時的に締め出す仕組み。</li>
+<li><strong><code>database is locked</code></strong>：締め出されて書き込めなかったときの SQLite のエラー。</li>
+<li><strong>busy timeout</strong>：締め出されている間、どれだけ待つかの上限時間。</li>
+<li><strong>リトライ（再試行）</strong>：失敗した処理をもう一度試すこと。</li>
+</ul>
+<p>BioLog は単一 Writer モデルによってこのエラーを構造的に避けているが、
+念のため有限の busy timeout（無限に待たない）と、
+<code>database is locked</code> のときだけ最大 5 回の短い再試行を用意している。</p>
+<h4 id="pragma-journal_mode-wal">PRAGMA / journal_mode / WAL</h4>
+<ul>
+<li><strong>PRAGMA</strong>：SQLite の動作設定を切り替えるための特別な命令。</li>
+<li><strong>journal_mode</strong>：書き込み途中の記録をどう残すかの方式。</li>
+<li><strong>WAL（Write-Ahead Logging）</strong>：更新内容を別ファイル（<code>.db-wal</code> / <code>.db-shm</code>）へ
+先に書き出す高速な方式。</li>
+</ul>
+<p>BioLog は <strong>WAL を使わず</strong> <code>PRAGMA journal_mode=DELETE</code> を強制している。
+Windows の NTFS 上で Docker のバインドマウント越しに WAL を使うと
+入出力エラーを誘発するため。過去に手動で WAL を有効化した名残として
+<code>.db-wal</code> / <code>.db-shm</code> が残っている場合は、削除してよいと README に記載されている。</p>
 <h4 id="ページングpaging">ページング（paging）</h4>
-<p>大量のデータを一度に返さず、一定件数ずつ区切って返すこと。 「何件目から何件分か」を指定する。</p>
-<p>BioLog の API はこの指定に負の値が来た場合などを拒否する。 なお CSV 出力は現在表示中のページではなく、<strong>指定期間の全件</strong>を出力する。</p>
-<hr>
+<p>大量のデータを一度に返さず、一定件数ずつ区切って返すこと。
+「何件目から何件分か」を指定する。</p>
+<p>BioLog の API はこの指定に負の値が来た場合などを拒否する。
+なお CSV 出力は現在表示中のページではなく、<strong>指定期間の全件</strong>を出力する。</p>
+<hr />
 <h3 id="docker・実行環境">Docker・実行環境</h3>
 <h4 id="dockerドッカー">Docker（ドッカー）</h4>
-<p>アプリを、必要なライブラリや設定ごと<strong>ひとまとめの箱</strong>にして動かす仕組み。 「自分の PC では動くのに他所では動かない」を防げる。</p>
-<p>BioLog は Python やライブラリを個別にインストールする必要がなく、 Docker があれば起動できるようにしてある。</p>
-<h4 id="docker-desktop--docker-engine">Docker Desktop / Docker Engine</h4>
+<p>アプリを、必要なライブラリや設定ごと<strong>ひとまとめの箱</strong>にして動かす仕組み。
+「自分の PC では動くのに他所では動かない」を防げる。</p>
+<p>BioLog は Python やライブラリを個別にインストールする必要がなく、
+Docker があれば起動できるようにしてある。</p>
+<h4 id="docker-desktop-docker-engine">Docker Desktop / Docker Engine</h4>
 <p>同じ Docker を使うための、提供形態の違い。</p>
-<ul><li><strong>Docker Desktop</strong>：Windows / macOS 向けの、画面操作もできる一式パッケージ。</li></ul>
-<p>Docker 本体と Compose がまとめて入る。</p>
-<ul><li><strong>Docker Engine</strong>：Linux 向けの本体部分。Compose は別途導入する。</li></ul>
-<p>BioLog はどちらでも動く。README が「Docker Desktop <strong>または</strong> Docker Engine + Compose v2」 と書いているのはこのため。</p>
+<ul>
+<li><strong>Docker Desktop</strong>：Windows / macOS 向けの、画面操作もできる一式パッケージ。
+Docker 本体と Compose がまとめて入る。</li>
+<li><strong>Docker Engine</strong>：Linux 向けの本体部分。Compose は別途導入する。</li>
+</ul>
+<p>BioLog はどちらでも動く。README が「Docker Desktop <strong>または</strong> Docker Engine + Compose v2」
+と書いているのはこのため。</p>
 <h4 id="コンテナcontainerイメージimage">コンテナ（container）／イメージ（image）</h4>
-<ul><li><strong>イメージ</strong>：アプリと必要な部品一式を固めた「型」。実行前の状態。</li><li><strong>コンテナ</strong>：イメージから作られて実際に動いている「実体」。</li></ul>
-<p>BioLog は <code>biolog-api</code> と <code>biolog-streamlit</code> の 2 つのコンテナで動く。 イメージの合計サイズは約 800 MB〜1 GB。</p>
+<ul>
+<li><strong>イメージ</strong>：アプリと必要な部品一式を固めた「型」。実行前の状態。</li>
+<li><strong>コンテナ</strong>：イメージから作られて実際に動いている「実体」。</li>
+</ul>
+<p>BioLog は <code>biolog-api</code> と <code>biolog-streamlit</code> の 2 つのコンテナで動く。
+イメージの合計サイズは約 800 MB〜1 GB。</p>
 <h4 id="buildビルドlayer-cacheレイヤーキャッシュ">build（ビルド）／layer cache（レイヤーキャッシュ）</h4>
-<ul><li><strong>build</strong>：イメージを組み立てる作業。ライブラリのダウンロードを含むため初回は時間がかかる。</li><li><strong>layer cache</strong>：build の途中結果を層（レイヤー）ごとに保存しておく仕組み。</li></ul>
-<p>変更がない層は再利用されるため、2 回目以降は大幅に短くなる。</p>
+<ul>
+<li><strong>build</strong>：イメージを組み立てる作業。ライブラリのダウンロードを含むため初回は時間がかかる。</li>
+<li><strong>layer cache</strong>：build の途中結果を層（レイヤー）ごとに保存しておく仕組み。
+変更がない層は再利用されるため、2 回目以降は大幅に短くなる。</li>
+</ul>
 <p>BioLog の初回 build は 3〜5 分、2 回目以降は数十秒が目安。</p>
-<h4 id="docker-compose--docker-compose--compose-v2--docker-composeyml">Docker Compose / <code>docker compose</code> / Compose v2 / docker-compose.yml</h4>
-<p><strong>Docker</strong> が 1 つのコンテナを作って動かす仕組みであるのに対し、 <strong>Docker Compose</strong> は複数のコンテナの構成をファイルに書いておき、まとめて起動・停止する仕組み。</p>
-<p>BioLog では <code>docker-compose.yml</code> に、API と画面の 2 コンテナ、公開するポート、 保存先、タイムゾーンなどをまとめて定義している。 <strong>Compose v2</strong> は現行世代の呼び方で、コマンドがハイフン付きの <code>docker-compose</code> ではなく 空白区切りの <code>docker compose</code> になっている。</p>
-<h4 id="docker-compose-up--down--restart--logs--exec"><code>docker compose up</code> / <code>down</code> / <code>restart</code> / <code>logs</code> / <code>exec</code></h4>
+<h4 id="docker-compose-docker-compose-compose-v2-docker-composeyml">Docker Compose / <code>docker compose</code> / Compose v2 / docker-compose.yml</h4>
+<p><strong>Docker</strong> が 1 つのコンテナを作って動かす仕組みであるのに対し、
+<strong>Docker Compose</strong> は複数のコンテナの構成をファイルに書いておき、まとめて起動・停止する仕組み。</p>
+<p>BioLog では <code>docker-compose.yml</code> に、API と画面の 2 コンテナ、公開するポート、
+保存先、タイムゾーンなどをまとめて定義している。
+<strong>Compose v2</strong> は現行世代の呼び方で、コマンドがハイフン付きの <code>docker-compose</code> ではなく
+空白区切りの <code>docker compose</code> になっている。</p>
+<h4 id="docker-compose-up-down-restart-logs-exec"><code>docker compose up</code> / <code>down</code> / <code>restart</code> / <code>logs</code> / <code>exec</code></h4>
 <p>README に登場する主なコマンド。</p>
-<div class="table-wrap"><table><thead><tr><th scope="col">コマンド</th><th scope="col">意味</th></tr></thead><tbody><tr><td><code>docker compose up -d --build</code></td><td>イメージを組み立て、コンテナを起動する。<code>-d</code> は画面を占有せず裏で動かす指定</td></tr><tr><td><code>docker compose down</code></td><td>コンテナを停止して片付ける。データファイルは残る</td></tr><tr><td><code>docker compose restart &lt;名前&gt;</code></td><td>指定したコンテナだけ再起動する</td></tr><tr><td><code>docker logs &lt;名前&gt; --tail 50</code></td><td>コンテナが出力した記録の末尾 50 行を表示する</td></tr><tr><td><code>docker exec &lt;名前&gt; &lt;コマンド&gt;</code></td><td>動いているコンテナの中でコマンドを実行する</td></tr></tbody></table></div>
+<table>
+<thead>
+<tr>
+  <th>コマンド</th>
+  <th>意味</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>docker compose up -d --build</code></td>
+  <td>イメージを組み立て、コンテナを起動する。<code>-d</code> は画面を占有せず裏で動かす指定</td>
+</tr>
+<tr>
+  <td><code>docker compose down</code></td>
+  <td>コンテナを停止して片付ける。データファイルは残る</td>
+</tr>
+<tr>
+  <td><code>docker compose restart &lt;名前&gt;</code></td>
+  <td>指定したコンテナだけ再起動する</td>
+</tr>
+<tr>
+  <td><code>docker logs &lt;名前&gt; --tail 50</code></td>
+  <td>コンテナが出力した記録の末尾 50 行を表示する</td>
+</tr>
+<tr>
+  <td><code>docker exec &lt;名前&gt; &lt;コマンド&gt;</code></td>
+  <td>動いているコンテナの中でコマンドを実行する</td>
+</tr>
+</tbody>
+</table>
 <h4 id="docker-composeoverrideyml">docker-compose.override.yml</h4>
 <p><code>docker-compose.yml</code> の設定を、元ファイルを書き換えずに上書きするための追加ファイル。</p>
-<p>BioLog では、8501 や 8766 が他のソフトと競合した場合に、 このファイルでポート番号だけを変更する使い方を README で案内している。</p>
+<p>BioLog では、8501 や 8766 が他のソフトと競合した場合に、
+このファイルでポート番号だけを変更する使い方を README で案内している。</p>
 <h4 id="ボリュームvolumeバインドマウントbind-mount">ボリューム（volume）／バインドマウント（bind mount）</h4>
-<p>コンテナの中と外でファイルを共有する仕組み。 コンテナは消えても、外に置いたファイルは残る。</p>
-<ul><li><strong>バインドマウント</strong>：PC 上の特定のフォルダを、そのままコンテナ内の場所として見せる方式。</li></ul>
-<p><code>docker-compose.yml</code> の <code>volumes:</code> がこの指定にあたる。 BioLog は <code>./data</code>（または <code>.env</code> で指定した場所）をコンテナ内の <code>/data</code> に バインドマウントし、<code>biolog.db</code> をそこに保存する。 このため <code>docker compose down</code> してもデータは消えない（→ 永続化）。</p>
+<p>コンテナの中と外でファイルを共有する仕組み。
+コンテナは消えても、外に置いたファイルは残る。</p>
+<ul>
+<li><strong>バインドマウント</strong>：PC 上の特定のフォルダを、そのままコンテナ内の場所として見せる方式。</li>
+</ul>
+<p><code>docker-compose.yml</code> の <code>volumes:</code> がこの指定にあたる。
+BioLog は <code>./data</code>（または <code>.env</code> で指定した場所）をコンテナ内の <code>/data</code> に
+バインドマウントし、<code>biolog.db</code> をそこに保存する。
+このため <code>docker compose down</code> してもデータは消えない（→ 永続化）。</p>
 <h4 id="永続化persistence">永続化（persistence）</h4>
 <p>プログラムを終了しても、データが消えずに残ること。</p>
-<h4 id="環境変数--env--envsample--biolog_data_dir">環境変数 / <code>.env</code> / <code>.env.sample</code> / BIOLOG_DATA_DIR</h4>
-<ul><li><strong>環境変数</strong>：プログラムの外側から与える設定値。コードを書き換えずに動作を変えられる。</li><li><strong><code>.env</code></strong>：その設定値をまとめて書いておくファイル。</li><li><strong><code>.env.sample</code></strong>：記入例のファイル。これをコピーして <code>.env</code> を作る。</li><li><strong>BIOLOG_DATA_DIR</strong>：BioLog のデータベースを置く場所を指定する環境変数。</li></ul>
-<p>未設定ならリポジトリ直下の <code>./data</code> が使われる。</p>
+<h4 id="環境変数-env-envsample-biolog_data_dir">環境変数 / <code>.env</code> / <code>.env.sample</code> / BIOLOG_DATA_DIR</h4>
+<ul>
+<li><strong>環境変数</strong>：プログラムの外側から与える設定値。コードを書き換えずに動作を変えられる。</li>
+<li><strong><code>.env</code></strong>：その設定値をまとめて書いておくファイル。</li>
+<li><strong><code>.env.sample</code></strong>：記入例のファイル。これをコピーして <code>.env</code> を作る。</li>
+<li><strong>BIOLOG_DATA_DIR</strong>：BioLog のデータベースを置く場所を指定する環境変数。
+未設定ならリポジトリ直下の <code>./data</code> が使われる。</li>
+</ul>
 <h4 id="restart-policy自動再起動unhealthy">restart policy（自動再起動）／<code>unhealthy</code></h4>
 <p>コンテナが停止したときに自動で起動し直す設定。</p>
-<p>BioLog では設定されているが、<strong>ヘルスチェックが <code>unhealthy</code>（異常）になっただけでは 再起動されない</strong>点に注意が必要、と README に明記されている。</p>
+<p>BioLog では設定されているが、<strong>ヘルスチェックが <code>unhealthy</code>（異常）になっただけでは
+再起動されない</strong>点に注意が必要、と README に明記されている。</p>
 <h4 id="capabilityケーパビリティ">capability（ケーパビリティ）</h4>
 <p>Linux でプログラムに与える特別な権限を、細かく分けたもの。</p>
-<p>BioLog では追加の capability をすべて破棄しており、 コンテナ内のプログラムが必要以上の権限を持たないようにしている。</p>
-<h4 id="uid--gid--非-root-ユーザー">UID / GID / 非 root ユーザー</h4>
-<ul><li><strong>UID / GID</strong>：利用者とグループを識別する番号。</li><li><strong>root</strong>：何でもできる管理者ユーザー。</li></ul>
-<p>BioLog の API と画面は、root ではなく UID/GID が <code>10001</code> の専用ユーザーで動く。 万一の侵入時に被害を広げないための措置。 このため、<code>/data</code> のバインドマウント先にこのユーザーの書き込み権限があるかを 運用前に確認する必要がある。</p>
-<h4 id="amd64--arm64--マルチアーキテクチャ">amd64 / arm64 / マルチアーキテクチャ</h4>
-<p>CPU の設計方式の種類。<strong>amd64</strong> は一般的な Windows / Linux PC、 <strong>arm64</strong> は Apple Silicon の Mac や Raspberry Pi などで使われる。 <strong>マルチアーキテクチャ image</strong> は、どちらでも動くように作られたイメージのこと。</p>
+<p>BioLog では追加の capability をすべて破棄しており、
+コンテナ内のプログラムが必要以上の権限を持たないようにしている。</p>
+<h4 id="uid-gid-非-root-ユーザー">UID / GID / 非 root ユーザー</h4>
+<ul>
+<li><strong>UID / GID</strong>：利用者とグループを識別する番号。</li>
+<li><strong>root</strong>：何でもできる管理者ユーザー。</li>
+</ul>
+<p>BioLog の API と画面は、root ではなく UID/GID が <code>10001</code> の専用ユーザーで動く。
+万一の侵入時に被害を広げないための措置。
+このため、<code>/data</code> のバインドマウント先にこのユーザーの書き込み権限があるかを
+運用前に確認する必要がある。</p>
+<h4 id="amd64-arm64-マルチアーキテクチャ">amd64 / arm64 / マルチアーキテクチャ</h4>
+<p>CPU の設計方式の種類。<strong>amd64</strong> は一般的な Windows / Linux PC、
+<strong>arm64</strong> は Apple Silicon の Mac や Raspberry Pi などで使われる。
+<strong>マルチアーキテクチャ image</strong> は、どちらでも動くように作られたイメージのこと。</p>
 <p>BioLog は amd64 でのみ動作確認済みで、arm64 は未検証。</p>
-<h4 id="ntfs--io">NTFS / I/O</h4>
-<ul><li><strong>NTFS</strong>：Windows で標準的に使われるファイルの管理方式。</li><li><strong>I/O（Input/Output）</strong>：入出力。ファイルの読み書きなど。</li></ul>
-<p>README の「Windows + NTFS bind mount で WAL モードが I/O エラーを誘発する」は、 この組み合わせでファイルの読み書きに失敗しやすかった、という意味。</p>
-<h4 id="ディスク--メモリ">ディスク / メモリ</h4>
-<ul><li><strong>ディスク</strong>：電源を切っても消えない保存領域。ハードディスクや SSD のこと。</li></ul>
-<p>ファイルやデータベースはここに残る。</p>
-<ul><li><strong>メモリ</strong>：プログラムが動いている間だけ使う作業机のような領域。</li></ul>
-<p>電源を切ると内容は消える。広いほど同時にたくさんの処理を進められる。</p>
-<p>README の System Requirements にある「ディスク: 約 1 GB」は、 Docker のイメージとデータベースを置くために必要な保存領域の目安。 「メモリ: 2 GB 程度で十分」は、API と画面の 2 つのコンテナを動かすのに 必要な作業領域の目安。BioLog は機械学習のような重い計算をしないため、 一般的な家庭用パソコンで足ります。</p>
+<h4 id="ntfs-i-o">NTFS / I/O</h4>
+<ul>
+<li><strong>NTFS</strong>：Windows で標準的に使われるファイルの管理方式。</li>
+<li><strong>I/O（Input/Output）</strong>：入出力。ファイルの読み書きなど。</li>
+</ul>
+<p>README の「Windows + NTFS bind mount で WAL モードが I/O エラーを誘発する」は、
+この組み合わせでファイルの読み書きに失敗しやすかった、という意味。</p>
+<h4 id="ディスク-メモリ">ディスク / メモリ</h4>
+<ul>
+<li><strong>ディスク</strong>：電源を切っても消えない保存領域。ハードディスクや SSD のこと。
+ファイルやデータベースはここに残る。</li>
+<li><strong>メモリ</strong>：プログラムが動いている間だけ使う作業机のような領域。
+電源を切ると内容は消える。広いほど同時にたくさんの処理を進められる。</li>
+</ul>
+<p>README の System Requirements にある「ディスク: 約 1 GB」は、
+Docker のイメージとデータベースを置くために必要な保存領域の目安。
+「メモリ: 2 GB 程度で十分」は、API と画面の 2 つのコンテナを動かすのに
+必要な作業領域の目安。BioLog は機械学習のような重い計算をしないため、
+一般的な家庭用パソコンで足ります。</p>
 <h4 id="デプロイdeploy">デプロイ（deploy）</h4>
 <p>作ったアプリを、実際に動く場所へ配置して使える状態にすること。</p>
-<h4 id="postgresql--フレームワーク--スタック">PostgreSQL / フレームワーク / スタック</h4>
-<ul><li><strong>PostgreSQL</strong>：本格的な、サーバ型のデータベース。SQLite より大規模用途に向く。</li><li><strong>フレームワーク</strong>：アプリを作るための土台となる枠組み。</li><li><strong>スタック</strong>：組み合わせて使う技術一式。BioLog のスタックは</li></ul>
-<p>「Streamlit + FastAPI + SQLite」。</p>
-<p>README は、大人数での利用や認証が必要なら BioLog ではなく 別のスタックを検討するよう案内している。</p>
-<hr>
+<h4 id="postgresql-フレームワーク-スタック">PostgreSQL / フレームワーク / スタック</h4>
+<ul>
+<li><strong>PostgreSQL</strong>：本格的な、サーバ型のデータベース。SQLite より大規模用途に向く。</li>
+<li><strong>フレームワーク</strong>：アプリを作るための土台となる枠組み。</li>
+<li><strong>スタック</strong>：組み合わせて使う技術一式。BioLog のスタックは
+「Streamlit + FastAPI + SQLite」。</li>
+</ul>
+<p>README は、大人数での利用や認証が必要なら BioLog ではなく
+別のスタックを検討するよう案内している。</p>
+<hr />
 <h3 id="データ・日時・ファイル形式">データ・日時・ファイル形式</h3>
 <h4 id="測定項目収縮期拡張期血圧・体脂肪率・筋肉量・基礎代謝">測定項目（収縮期／拡張期血圧・体脂肪率・筋肉量・基礎代謝）</h4>
 <p>BioLog が 1 日 1 件のレコードに記録する健康の数値。</p>
-<ul><li><strong>収縮期血圧 / 拡張期血圧</strong>：血圧の「上」と「下」。心臓が縮んで血を押し出した瞬間が</li></ul>
-<p>収縮期（上）、力を抜いて広がったときが拡張期（下）。</p>
-<ul><li><strong>体脂肪率</strong>：体重に占める脂肪の割合（%）。</li><li><strong>筋肉量</strong>：体内の筋肉の重さ（kg）。</li><li><strong>基礎代謝</strong>：何もせずじっとしていても消費されるエネルギー量（kcal）。</li></ul>
+<ul>
+<li><strong>収縮期血圧 / 拡張期血圧</strong>：血圧の「上」と「下」。心臓が縮んで血を押し出した瞬間が
+収縮期（上）、力を抜いて広がったときが拡張期（下）。</li>
+<li><strong>体脂肪率</strong>：体重に占める脂肪の割合（%）。</li>
+<li><strong>筋肉量</strong>：体内の筋肉の重さ（kg）。</li>
+<li><strong>基礎代謝</strong>：何もせずじっとしていても消費されるエネルギー量（kcal）。</li>
+</ul>
 <p>いずれも入力は任意で、空欄のままにした項目は既存の値がそのまま残る。</p>
-<h4 id="utc--jst">UTC / JST</h4>
-<ul><li><strong>UTC（協定世界時）</strong>：世界共通の基準時刻。</li><li><strong>JST（日本標準時）</strong>：日本の時刻。UTC より 9 時間進んでいる（UTC+9）。</li></ul>
-<p>Docker のコンテナは何も指定しないと UTC で動くため、 日本の深夜 0〜9 時に登録すると「前日」の日付として記録されてしまう問題があった。 BioLog は日付を JST 基準で決める処理（<code>jst_date()</code>）に統一し、 さらにコンテナの時刻設定（<code>Asia/Tokyo</code>）もそろえてこれを解消している。</p>
-<h4 id="asiatokyoタイムゾーン指定"><code>Asia/Tokyo</code>（タイムゾーン指定）</h4>
-<p>コンテナの時刻を日本時間に合わせるための設定値。 <code>docker-compose.yml</code> の環境変数で API と画面の両方に指定されている。</p>
-<h4 id="created_at--updated_at">created_at / updated_at</h4>
-<ul><li><strong>created_at</strong>：そのレコードが最初に作られた日時。BioLog では自動的に記録される。</li><li><strong>updated_at</strong>：最後に更新された日時。<strong>BioLog では未実装</strong>。</li></ul>
-<p>このため、レコードを修正しても <code>created_at</code> は変わらず、 「いつ変更されたか」は残らない。README が「監査ログ用途には不十分」としているのはこの点。</p>
+<h4 id="utc-jst">UTC / JST</h4>
+<ul>
+<li><strong>UTC（協定世界時）</strong>：世界共通の基準時刻。</li>
+<li><strong>JST（日本標準時）</strong>：日本の時刻。UTC より 9 時間進んでいる（UTC+9）。</li>
+</ul>
+<p>Docker のコンテナは何も指定しないと UTC で動くため、
+日本の深夜 0〜9 時に登録すると「前日」の日付として記録されてしまう問題があった。
+BioLog は日付を JST 基準で決める処理（<code>jst_date()</code>）に統一し、
+さらにコンテナの時刻設定（<code>Asia/Tokyo</code>）もそろえてこれを解消している。</p>
+<h4 id="asia-tokyoタイムゾーン指定"><code>Asia/Tokyo</code>（タイムゾーン指定）</h4>
+<p>コンテナの時刻を日本時間に合わせるための設定値。
+<code>docker-compose.yml</code> の環境変数で API と画面の両方に指定されている。</p>
+<h4 id="created_at-updated_at">created_at / updated_at</h4>
+<ul>
+<li><strong>created_at</strong>：そのレコードが最初に作られた日時。BioLog では自動的に記録される。</li>
+<li><strong>updated_at</strong>：最後に更新された日時。<strong>BioLog では未実装</strong>。</li>
+</ul>
+<p>このため、レコードを修正しても <code>created_at</code> は変わらず、
+「いつ変更されたか」は残らない。README が「監査ログ用途には不十分」としているのはこの点。</p>
 <h4 id="監査ログ">監査ログ</h4>
 <p>誰がいつ何を変更したかを、後から追跡できるように残す記録。</p>
-<h4 id="csv--utf-8--bom">CSV / UTF-8 / BOM</h4>
-<ul><li><strong>CSV</strong>：値をカンマ区切りで並べた、表計算ソフトで開ける単純なファイル形式。</li><li><strong>UTF-8</strong>：世界中の文字を扱える文字コード（文字の表現方式）。</li><li><strong>BOM（Byte Order Mark）</strong>：ファイル先頭に付ける短い目印。</li></ul>
-<p>Excel は BOM が無い UTF-8 の CSV を開くと日本語が文字化けすることがあるため、 BioLog は <strong>BOM 付き UTF-8</strong> で CSV を出力し、そのまま Excel で開けるようにしている。</p>
+<h4 id="csv-utf-8-bom">CSV / UTF-8 / BOM</h4>
+<ul>
+<li><strong>CSV</strong>：値をカンマ区切りで並べた、表計算ソフトで開ける単純なファイル形式。</li>
+<li><strong>UTF-8</strong>：世界中の文字を扱える文字コード（文字の表現方式）。</li>
+<li><strong>BOM（Byte Order Mark）</strong>：ファイル先頭に付ける短い目印。</li>
+</ul>
+<p>Excel は BOM が無い UTF-8 の CSV を開くと日本語が文字化けすることがあるため、
+BioLog は <strong>BOM 付き UTF-8</strong> で CSV を出力し、そのまま Excel で開けるようにしている。</p>
 <h4 id="csv-の数式無害化">CSV の数式無害化</h4>
-<p>表計算ソフトは、セルの内容が <code>=</code> や <code>+</code> で始まると<strong>計算式として実行</strong>してしまう。 悪意ある文字列が CSV に混ざっていた場合、開いただけで意図しない動作をする恐れがある。</p>
-<p>BioLog は <code>=</code> <code>+</code> <code>-</code> <code>@</code> で始まる文字列を、そのまま文字として扱われる形に変換してから CSV へ書き出している。</p>
+<p>表計算ソフトは、セルの内容が <code>=</code> や <code>+</code> で始まると<strong>計算式として実行</strong>してしまう。
+悪意ある文字列が CSV に混ざっていた場合、開いただけで意図しない動作をする恐れがある。</p>
+<p>BioLog は <code>=</code> <code>+</code> <code>-</code> <code>@</code> で始まる文字列を、そのまま文字として扱われる形に変換してから
+CSV へ書き出している。</p>
 <h4 id="ダミーデータ">ダミーデータ</h4>
-<p>説明や画面例のために用意した、実在しない仮のデータ。 README のスクリーンショットに写っている数値はすべてこれ。</p>
-<hr>
+<p>説明や画面例のために用意した、実在しない仮のデータ。
+README のスクリーンショットに写っている数値はすべてこれ。</p>
+<hr />
 <h3 id="セキュリティ">セキュリティ</h3>
 <h4 id="認証authentication">認証（authentication）</h4>
 <p>利用しようとしている相手が誰なのかを確認し、許可された人だけ通す仕組み。</p>
-<p><strong>BioLog には認証機能がありません。</strong> URL を開ければ誰でも全データを閲覧・変更できます。 これは「同じ PC からしか開けない」前提で、意図的に実装していないものです。</p>
-<h4 id="api-キー--basic-認証--oauth">API キー / Basic 認証 / OAuth</h4>
+<p><strong>BioLog には認証機能がありません。</strong> URL を開ければ誰でも全データを閲覧・変更できます。
+これは「同じ PC からしか開けない」前提で、意図的に実装していないものです。</p>
+<h4 id="api-キー-basic-認証-oauth">API キー / Basic 認証 / OAuth</h4>
 <p>認証のやり方の代表例。</p>
-<ul><li><strong>API キー</strong>：あらかじめ決めた秘密の文字列を要求に添えて本人確認する方式。</li><li><strong>Basic 認証</strong>：ブラウザがユーザー名とパスワードの入力を求める、最も単純な方式。</li><li><strong>OAuth</strong>：Google アカウントなど外部サービスの認証結果を借りる方式。</li></ul>
+<ul>
+<li><strong>API キー</strong>：あらかじめ決めた秘密の文字列を要求に添えて本人確認する方式。</li>
+<li><strong>Basic 認証</strong>：ブラウザがユーザー名とパスワードの入力を求める、最も単純な方式。</li>
+<li><strong>OAuth</strong>：Google アカウントなど外部サービスの認証結果を借りる方式。</li>
+</ul>
 <p>いずれも BioLog では未実装。</p>
 <h4 id="corscross-origin-resource-sharingクロスオリジンオリジン">CORS（Cross-Origin Resource Sharing）／クロスオリジン／オリジン</h4>
-<p><strong>オリジン</strong>とは「どのサイトから来たか」を表す、 アドレスの <code>http://localhost:8501</code> の部分（プロトコル・ホスト・ポートの組）のこと。</p>
-<p>ブラウザは安全のため、あるオリジンのページから別オリジンの API を呼ぶことを 標準で禁止している。CORS はそれを例外的に許可するための仕組み。</p>
-<p>BioLog は <strong>CORS の許可設定を入れていない</strong>ため、 他のサイトのページから BioLog の API を直接呼び出すことはできない。</p>
-<h4 id="https--tls">HTTPS / TLS</h4>
-<ul><li><strong>TLS</strong>：通信内容を暗号化し、途中で盗み見・改ざんされないようにする技術。</li><li><strong>HTTPS</strong>：HTTP に TLS を組み合わせたもの。アドレスが <code>https://</code> で始まる。</li></ul>
-<p>BioLog は同一 PC 内での利用を前提としているため HTTPS を前提としていない。 外部から使える場所に置く場合は、前段のリバースプロキシ側で用意する必要がある。</p>
+<p><strong>オリジン</strong>とは「どのサイトから来たか」を表す、
+アドレスの <code>http://localhost:8501</code> の部分（プロトコル・ホスト・ポートの組）のこと。</p>
+<p>ブラウザは安全のため、あるオリジンのページから別オリジンの API を呼ぶことを
+標準で禁止している。CORS はそれを例外的に許可するための仕組み。</p>
+<p>BioLog は <strong>CORS の許可設定を入れていない</strong>ため、
+他のサイトのページから BioLog の API を直接呼び出すことはできない。</p>
+<h4 id="https-tls">HTTPS / TLS</h4>
+<ul>
+<li><strong>TLS</strong>：通信内容を暗号化し、途中で盗み見・改ざんされないようにする技術。</li>
+<li><strong>HTTPS</strong>：HTTP に TLS を組み合わせたもの。アドレスが <code>https://</code> で始まる。</li>
+</ul>
+<p>BioLog は同一 PC 内での利用を前提としているため HTTPS を前提としていない。
+外部から使える場所に置く場合は、前段のリバースプロキシ側で用意する必要がある。</p>
 <h4 id="レート制限rate-limit">レート制限（rate limit）</h4>
-<p>短時間に大量の要求が来たときに、受付を制限する仕組み。 BioLog では未実装。</p>
+<p>短時間に大量の要求が来たときに、受付を制限する仕組み。
+BioLog では未実装。</p>
 <h4 id="ファイアウォール">ファイアウォール</h4>
 <p>通信を許可・遮断して、接続元を制限する仕組み。</p>
-<p>README では、LAN 内の別端末から BioLog を使う場合でも、 ファイアウォール等で接続元を絞ることを求めている。</p>
-<h4 id="cloudflare-access--tailscale">Cloudflare Access / Tailscale</h4>
+<p>README では、LAN 内の別端末から BioLog を使う場合でも、
+ファイアウォール等で接続元を絞ることを求めている。</p>
+<h4 id="cloudflare-access-tailscale">Cloudflare Access / Tailscale</h4>
 <p>BioLog の前段に置く認証層の実例として README に挙げられているサービス。</p>
-<ul><li><strong>Cloudflare Access</strong>：アプリの手前で本人確認を行うサービス。</li><li><strong>Tailscale</strong>：離れた端末同士を、閉じた仮想的なネットワークで安全につなぐサービス。</li></ul>
-<hr>
+<ul>
+<li><strong>Cloudflare Access</strong>：アプリの手前で本人確認を行うサービス。</li>
+<li><strong>Tailscale</strong>：離れた端末同士を、閉じた仮想的なネットワークで安全につなぐサービス。</li>
+</ul>
+<hr />
 <h3 id="開発・運用">開発・運用</h3>
 <h4 id="gitギットgithubギットハブcloneクローン">Git（ギット）／GitHub（ギットハブ）／clone（クローン）</h4>
-<ul><li><strong>Git</strong>：ファイルの変更履歴を記録・管理する仕組み。</li><li><strong>GitHub</strong>：Git で管理したものをインターネット上に置いて共有するサービス。</li><li><strong>clone</strong>：GitHub 上のものを自分の PC へ複製すること。</li></ul>
-<p>README の <code>git clone https://github.com/shinosan1/biolog.git</code> は、 BioLog 一式を自分の PC へ取得するコマンド。</p>
+<ul>
+<li><strong>Git</strong>：ファイルの変更履歴を記録・管理する仕組み。</li>
+<li><strong>GitHub</strong>：Git で管理したものをインターネット上に置いて共有するサービス。</li>
+<li><strong>clone</strong>：GitHub 上のものを自分の PC へ複製すること。</li>
+</ul>
+<p>README の <code>git clone https://github.com/shinosan1/biolog.git</code> は、
+BioLog 一式を自分の PC へ取得するコマンド。</p>
 <h4 id="リポジトリrepository">リポジトリ（repository）</h4>
-<p>Git が管理している、プロジェクト 1 つ分のファイルと履歴のまとまり。「置き場」の意味。 README の「リポジトリ直下」は、この置き場の一番上の階層を指す。</p>
-<h4 id="issues--pull-requestpr">Issues / Pull Request（PR）</h4>
+<p>Git が管理している、プロジェクト 1 つ分のファイルと履歴のまとまり。「置き場」の意味。
+README の「リポジトリ直下」は、この置き場の一番上の階層を指す。</p>
+<h4 id="issues-pull-requestpr">Issues / Pull Request（PR）</h4>
 <p>GitHub 上でのやり取りの仕組み。</p>
-<ul><li><strong>Issues</strong>：不具合報告や要望を書き込む場所。</li><li><strong>Pull Request</strong>：自分が書いた変更を「取り込んでほしい」と提案する仕組み。</li></ul>
-<p>BioLog は個人プロジェクトのため Pull Request の対応保証はなく、 設計変更はまず Issues での議論を求めている。</p>
+<ul>
+<li><strong>Issues</strong>：不具合報告や要望を書き込む場所。</li>
+<li><strong>Pull Request</strong>：自分が書いた変更を「取り込んでほしい」と提案する仕組み。</li>
+</ul>
+<p>BioLog は個人プロジェクトのため Pull Request の対応保証はなく、
+設計変更はまず Issues での議論を求めている。</p>
 <h4 id="changelog変更履歴バージョン番号">CHANGELOG（変更履歴）／バージョン番号</h4>
-<ul><li><strong>CHANGELOG</strong>：どの版で何を変えたかを記録したファイル。</li><li><strong>バージョン番号</strong>：<code>v1.5.5</code> のような版の番号。README の Known Issues にある</li></ul>
-<p>「v1.5.5 で〜」という記述は、その版で修正されたことを示す。</p>
+<ul>
+<li><strong>CHANGELOG</strong>：どの版で何を変えたかを記録したファイル。</li>
+<li><strong>バージョン番号</strong>：<code>v1.5.5</code> のような版の番号。README の Known Issues にある
+「v1.5.5 で〜」という記述は、その版で修正されたことを示す。</li>
+</ul>
 <h4 id="mit-license">MIT License</h4>
-<p>ソフトの利用条件を定めたライセンスのひとつ。著作権表示を残せば、 商用利用・改変・再配布を広く認める、制約の緩い形式。BioLog はこれを採用している。</p>
+<p>ソフトの利用条件を定めたライセンスのひとつ。著作権表示を残せば、
+商用利用・改変・再配布を広く認める、制約の緩い形式。BioLog はこれを採用している。</p>
 <h4 id="roadmapロードマップ">Roadmap（ロードマップ）</h4>
-<p>今後の予定や未着手のタスクを並べたもの。 BioLog の Roadmap に挙がっている項目は優先度が低く、現状で実害はないと明記されている。 先頭の <code>M1</code> <code>M2</code> <code>L1</code> は、監査で付けられた項目の識別子（M は中程度、L は低い優先度）。</p>
+<p>今後の予定や未着手のタスクを並べたもの。
+BioLog の Roadmap に挙がっている項目は優先度が低く、現状で実害はないと明記されている。
+先頭の <code>M1</code> <code>M2</code> <code>L1</code> は、監査で付けられた項目の識別子（M は中程度、L は低い優先度）。</p>
 <h4 id="claude-code">Claude Code</h4>
-<p>Anthropic 社が提供する、AI を使った開発支援ツール。 BioLog では設計の議論や実装の一部に併用したことが Acknowledgments に記載されている。</p>
-<hr>
+<p>Anthropic 社が提供する、AI を使った開発支援ツール。
+BioLog では設計の議論や実装の一部に併用したことが Acknowledgments に記載されている。</p>
+<hr />
 <h2 id="license">License</h2>
-<p><a href="LICENSE.html">MIT License</a> © 2026 [shinosan1]</p>
-<hr>
+<p><a href="LICENSE.md">MIT License</a> © 2026 [shinosan1]</p>
+<hr />
 <h2 id="acknowledgments">Acknowledgments</h2>
-<ul><li>設計議論・実装の一部は Claude Code (Anthropic) を併用しています</li></ul>
+<ul>
+<li>設計議論・実装の一部は Claude Code (Anthropic) を併用しています</li>
+</ul>
 </main><footer class="doc-footer">このHTMLは対応するMarkdown原本（<a href="README.md">README.md</a>）を閲覧しやすく表示するための文書です。</footer></body></html>

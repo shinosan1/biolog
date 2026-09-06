@@ -7,14 +7,16 @@ from datetime import date, datetime, timezone
 from queue import Empty, Queue as SyncQueue
 from typing import Optional
 
-from fastapi import FastAPI, HTTPException, Query, Request
+from fastapi import Depends, FastAPI, HTTPException, Query, Request
+from pydantic import ValidationError
 
 import biocore
 import preprocess as pp
+from csv_import import parse_csv_snapshot
 from db_manager import get_connection
 from log_utils import mask_pii
 from queue_manager import get_queue
-from schemas import HealthRecordCreate, HealthRecordUpdate
+from schemas import CsvImportRequest, HealthRecordCreate, HealthRecordUpdate
 from worker import worker_loop
 DATABASE_PATH = os.getenv("DATABASE_PATH", "")
 
@@ -211,6 +213,60 @@ def update_record(record_id: int, record: HealthRecordUpdate):
     }, ensure_ascii=False), flush=True)
     result = _enqueue_and_wait("update", payload)
     return {"message": "更新完了", **result}
+
+
+def _csv_import_preview(request: CsvImportRequest) -> dict:
+    parsed = parse_csv_snapshot(
+        request.csv_text, request.restore_formula_prefix
+    )
+    keys = [(item["payload"]["user_id"], item["payload"]["date"])
+            for item in parsed["rows"]]
+    existing = biocore.get_records_by_user_dates(keys) if keys else set()
+    updated = sum(key in existing for key in keys)
+    return {
+        "total": parsed["total"], "created": len(keys) - updated,
+        "updated": updated, "skipped": 0, "errors": parsed["errors"],
+        "formula_prefix_count": parsed["formula_prefix_count"],
+    }
+
+
+async def _read_csv_import_request(request: Request) -> CsvImportRequest:
+    try:
+        raw = await request.json()
+    except (ValueError, UnicodeDecodeError):
+        raise HTTPException(status_code=422, detail={
+            "message": "CSVインポート要求が不正です",
+            "errors": [{"row": 0, "field": "CSV", "reason": "JSON形式が不正です"}],
+        })
+    try:
+        return CsvImportRequest.model_validate(raw)
+    except ValidationError as exc:
+        # Do not return Pydantic's input echo: it could contain health data.
+        errors = [{"row": 0, "field": ".".join(map(str, issue["loc"])) or "CSV",
+                   "reason": issue["msg"]}
+                  for issue in exc.errors(include_input=False)]
+        raise HTTPException(status_code=422, detail={
+            "message": "CSVインポート要求が不正です", "errors": errors,
+        })
+
+
+@app.post("/api/health/import/preview")
+def preview_csv_import(payload: CsvImportRequest = Depends(_read_csv_import_request)):
+    return _csv_import_preview(payload)
+
+
+@app.post("/api/health/import")
+def import_csv(payload: CsvImportRequest = Depends(_read_csv_import_request)):
+    parsed = parse_csv_snapshot(
+        payload.csv_text, payload.restore_formula_prefix
+    )
+    if parsed["errors"]:
+        raise HTTPException(status_code=422, detail={
+            "message": "CSVにエラーがあるため取り込みませんでした",
+            "errors": parsed["errors"],
+        })
+    result = _enqueue_and_wait("import", {"rows": parsed["rows"]})
+    return {"message": "CSV取り込み完了", **result}
 
 
 @app.get("/api/health/record/day")

@@ -11,6 +11,7 @@ from ui_style import inject_number_input_styles
 from views.create import render_create
 from views.edit import render_edit
 from views.graph import render_graph
+from views.import_view import render_csv_import
 from views.list_view import render_list
 from views.summary import render_summary
 
@@ -84,6 +85,7 @@ with tab_graph:
 # ────────────────────────────────
 with tab_list:
     render_list(selected_users, date_start, date_end)
+    render_csv_import()
 
 
 # ────────────────────────────────

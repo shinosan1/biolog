@@ -4,7 +4,10 @@ BioLog プロジェクトの全変更履歴です。
 形式は [Keep a Changelog](https://keepachangelog.com/ja/1.1.0/) に従います。
 
 ---
-## [Unreleased]
+## [1.8.0] — 2026-09-06
+
+### Added
+- 一覧画面に、BioLogのUTF-8 BOM付きCSVをプレビューしてから追加・更新するCSVインポートを追加した。各行を日次の完全な状態として復元し、空欄はNULLまたは空文字として反映する。
 
 ### Changed
 - `biolog_api/write_repository.py` のUPDATE系構造化ログを、既存の `mask_pii()` 経路へ統一した。現在の値はIDと固定フィールド名だけだが、将来ログ項目が増えた場合も同じマスキング境界を通る。

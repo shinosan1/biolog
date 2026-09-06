@@ -6,6 +6,13 @@ from pydantic import BaseModel, ConfigDict, Field, field_validator, model_valida
 USER_IDS = {"self", "father", "mother"}
 
 
+class CsvImportRequest(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
+    csv_text: str = Field(max_length=5 * 1024 * 1024)
+    restore_formula_prefix: bool = False
+
+
 # API 層バリデーション責務:
 #   入力値の型・範囲チェック（UX 目的、422 でユーザーに即時フィードバック）
 #   DB CHECK 制約とは独立して管理する。
@@ -199,3 +206,23 @@ class HealthRecordUpdate(BaseModel):
         if v is not None and not (0 < v < 5000):
             raise ValueError("bmr must be between 0 and 5000 kcal")
         return v
+
+
+class CsvImportRecord(HealthRecordUpdate):
+    """A complete CSV snapshot; unlike normal updates it has a daily key."""
+
+    date: str
+    user_id: str
+    meal_detail: str = Field(max_length=10000)
+    activity_log: str = Field(max_length=20000)
+    memo: str = Field(max_length=10000)
+
+    @field_validator("date")
+    @classmethod
+    def valid_date(cls, v):
+        return HealthRecordCreate.valid_date(v)
+
+    @field_validator("user_id")
+    @classmethod
+    def valid_user_id(cls, v):
+        return HealthRecordCreate.valid_user_id(v)

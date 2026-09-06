@@ -133,3 +133,17 @@ def get_latest_record(user_id: str) -> Optional[Dict[str, Any]]:
     LIMIT 1
     """
     return _execute_read(query, (user_id,), one=True)
+
+
+def get_records_by_user_dates(keys: list[tuple[str, str]]) -> set[tuple[str, str]]:
+    """Return only the requested import keys, in SQLite-safe parameter batches."""
+    existing = set()
+    for start in range(0, len(keys), 400):
+        batch = keys[start:start + 400]
+        where = " OR ".join("(user_id = ? AND date = ?)" for _ in batch)
+        params = tuple(value for key in batch for value in key)
+        rows = _execute_read(
+            f"SELECT user_id, date FROM health_records WHERE {where}", params
+        )
+        existing.update((row["user_id"], row["date"]) for row in rows)
+    return existing
